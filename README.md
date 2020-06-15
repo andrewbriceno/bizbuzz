@@ -7,7 +7,7 @@ Step 1: Checkout the branch to jose_frontend (git branch -b jose_frontend)
 
 Step 2: Pull changes from jose_frontend (git pull)
 
-Note: If you are working on backend then make your new branch (just to not mess up with the code) using command git branch -b <your branch name>.
+Note: If you are working on backend then make your new branch (just to not mess up with the code) using command git branch -b "your branch name".
 
 Step 3: To run the project , open terminal in Pycharm and make sure you are in the project directory.
 
