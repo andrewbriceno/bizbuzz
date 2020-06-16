@@ -18,6 +18,7 @@ from django.urls import path
 from django.conf.urls import url,include
 
 urlpatterns = [
-url(r'^bizzbuzz/', include('bizzbuzz.urls')), #this line added
+path('bizzbuzz/', include('bizzbuzz.urls')), #this line added
     path('admin/', admin.site.urls),
+
 ]
