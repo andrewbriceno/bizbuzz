@@ -1,5 +1,5 @@
 body{
-    background-color: #FBFAFA;
+    background-color: #055662;
 }
 .navbar{
     display: flex;
@@ -11,6 +11,7 @@ body{
     font-weight: bold;
 font-family: Georgia;
     letter-spacing: 0.05em;
+    color: white;
 }
 .subHeading{
    font-size: 16px;
@@ -20,7 +21,7 @@ font-family: Georgia;
 }
 a{
     text-decoration: none;
-    color: black;
+    color: white;
 }
 a:hover{
     text-decoration: underline;
@@ -43,6 +44,7 @@ a:hover{
     margin-left: -7px;
     border-radius: 5px;
 }
+
 .favorite
 {
     margin-left: 72px;
@@ -60,7 +62,7 @@ a:hover{
 }
 .active
 {
-background-color: #CBE1F0;
+background-color: #055662;
 }
 .imgcontainer
 {
@@ -83,8 +85,10 @@ background-color: #CBE1F0;
 .feed{
     display: flex;
     flex-direction: column;
-    width: 95%;
     border-top:darkgray solid 1px;
+    background-color: white;
+    margin-right: -5px;
+    overflow-x: hidden;
 }
 .favoritebar
 {
@@ -93,7 +97,6 @@ background-color: #CBE1F0;
     flex-direction: row;
     background-color: white;
     height: 5%;
-
     border-bottom: darkgray solid 1px;
 border-left: darkgray solid 1px;
     border-right: darkgray solid 1px;
@@ -101,10 +104,15 @@ border-left: darkgray solid 1px;
     margin-right: -5px;
 
 }
+.favoritebar a{
+  color:#055662;
+    font-weight: bold;
+}
 .timeheading h1
 {
 margin-bottom: 0;
     margin-left: 25px;
+    color: #055662;
 }
 .news
 {
@@ -123,15 +131,17 @@ margin-bottom: 0;
     margin-left: 28px;
     border: darkgray solid 1px;
     border-radius: 5px;
+    background-color: #055662;
+    color: white;
 }
 .number
 {
     height: 40px;
     width: 45px;
-    background-color: #33A4F0;
+    background-color: white;
     border: none;
     border-radius: 2px;
-    color: white;
+    color: #055662;
     margin-left: 15px;
     font-weight: bold;
     font-size: 18px;
@@ -144,8 +154,8 @@ margin-bottom: 0;
     width: 280px;
     padding-left: 15px;
     padding-top: 18px;
-    font-weight: bold;
-    opacity: 0.8;
+
+
     display: flex;
     flex-direction: column;
 }
@@ -155,7 +165,7 @@ margin-bottom: 0;
 .author
 {
     font-size: 15px;
-    opacity: 0.6;
+    opacity: 0.9;
     font-weight: bold;
     margin-top: 15px;
 }
