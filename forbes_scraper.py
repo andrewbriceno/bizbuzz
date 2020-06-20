@@ -49,7 +49,7 @@ def insert(title_url_map):
     cursor = conn.execute("SELECT TITLE, URL from NEWS")
     for row in cursor:
         print("TITLE = ", row[0])
-        print("URL = ", row[1])
+        print("URL = ", row[1]) #just for commit
 
 
 if __name__ == '__main__':
