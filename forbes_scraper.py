@@ -2,7 +2,6 @@ from urllib.request import urlopen
 from bs4 import BeautifulSoup as soup
 import sqlite3
 
-#FIXME: scrape company along with article title and URL so it can be added to the database please
 def main():
     myurl = 'https://www.forbes.com/business'
 
@@ -28,10 +27,10 @@ def main():
     # method for inserting title and URL into database, just comment out if not needed
     insert(title_url_map)
 
+#FIXME: how to avoid duplicates in database
 def insert(title_url_map):
     conn = sqlite3.connect('news.db')
 
-    #FIXME: when do we re-populate the database/refresh the data?
     # create database if it doesn't exist yet
     conn.execute('''CREATE TABLE IF NOT EXISTS NEWS
              (TITLE           TEXT,
@@ -49,7 +48,7 @@ def insert(title_url_map):
     cursor = conn.execute("SELECT TITLE, URL from NEWS")
     for row in cursor:
         print("TITLE = ", row[0])
-        print("URL = ", row[1]) #just for commit
+        print("URL = ", row[1])
 
 
 if __name__ == '__main__':
