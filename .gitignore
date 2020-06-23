@@ -1,2 +1,5 @@
 #Database
 *.db
+
+#without this, merging gets complicated
+/__pycache__
