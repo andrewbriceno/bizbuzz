@@ -32,22 +32,18 @@ $(function() {
 <div class="sidebar">
     <form method="post" action="">
         <input type="search" placeholder="Filter Feeds" class="searchbox"></form>
-        <a href="#" id="link1"> <img src="{% static "images/heart.png" %}" class="favorite"></a>
+         <a href="#" id="link1"> <img src="{% static "images/heart.png" %}" class="favorite"></a>
     <a href="#" id="link2"> <img src="{% static "images/channel1.png" %}" class="channel"></a>
-    <a href="#" id="link3"> <img src="{% static "images/channel2.png_large" %}" class="channel"></a>
-    <a href="#" id="link4"> <img src="{% static "images/channel1.png" %}" class="channel"></a>
-    <a href="#" id="link5"> <img src="{% static "images/channel2.png_large" %}" class="channel"></a>
-    <a href="#" id="link6"> <img src="{% static "images/channel1.png" %}" class="channel"></a>
-    <a href="#" id="link7"> <img src="{% static "images/channel2.png_large" %}" class="channel"></a>
-    <a href="#" id="link8"> <img src="{% static "images/channel1.png" %}" class="channel"></a>
-    <a href="#" id="link9"> <img src="{% static "images/channel2.png_large" %}" class="channel"></a>
+    <a href="#" id="link3"> <img src="{% static "images/channel2.png" %}" class="channel"></a>
+    <a href="#" id="link4"> <img src="{% static "images/channel3.png" %}" class="channel"></a>
+    <a href="#" id="link5"> <img src="{% static "images/channel4.png" %}" class="channel" style="height: 50px;"></a>
 </div>
     <div class="feed">
 
         <span class="loginHeading">Login</span>
 
 <div class="loginContainer">
-    <form action="" method="post">
+    <form action="/bizzbuzz/home" >
         <input type="text" placeholder="Enter username/email"><br>
         <input type="password" placeholder="Enter password"><br>
         <span class="hintText"><a href="/bizzbuzz/forgotpassword">Forgotten Password?</a> </span>

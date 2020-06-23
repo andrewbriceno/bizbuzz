@@ -18,3 +18,6 @@ def forgotpassword(request):
 def searchchannel(request):
     return render(request,'bizzbuzz/searchchannel.html')
 
+def home(request):
+    return render(request,'bizzbuzz/home.html')
+

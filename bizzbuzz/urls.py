@@ -5,5 +5,6 @@ urlpatterns = [
 url(r'^login/$', views.login, name='login'),
 url(r'^signup/$', views.signup, name='signup'),
 url(r'^forgotpassword/$', views.forgotpassword, name='forgotpassword'),
-url(r'^searchchannel/$', views.searchchannel, name='searchchannel')
+url(r'^searchchannel/$', views.searchchannel, name='searchchannel'),
+url(r'^home/$', views.home, name='home')
 ]
