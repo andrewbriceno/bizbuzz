@@ -43,12 +43,12 @@ $(function() {
         <span class="loginHeading">SignUp</span>
 
 <div class="loginContainer">
-    <form action="" method="post">
-        <input type="text" placeholder="Enter username"><br>
-        <input type="text" placeholder="Enter email"><br>
-        <input type="password" placeholder="Enter password"><br>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Enter username"><br>
+        <input type="password" name="password" placeholder="Enter password"><br>
         <input type="submit" name="" value="Register" class="logibtn"><br>
-        <span class="signupText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Already have an account?<a href="/bizzbuzz/login"> Sign in</a> </span>
+        <a href="/bizzbuzz/login "style="color:#000000">Already have an account? Log in here!</a>
     </form>
 </div>
 
