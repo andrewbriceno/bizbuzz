@@ -40,6 +40,9 @@ def insert(lists):
              (TITLE           TEXT,
               URL             TEXT);''')
 
+    #deletes old BI news
+    conn.execute('''DELETE FROM NEWS WHERE URL LIKE '%businessinsider.com%';''')
+
     # insert the title and url of each article in DB
     for title, url in lists:
         conn.execute("INSERT INTO NEWS (TITLE, URL) VALUES (?, ?)",

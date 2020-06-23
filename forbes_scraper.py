@@ -21,8 +21,8 @@ def main():
             title_url_map[title.a.find(text=True)]=title.a['href']
 
     #print the map
-    for article in title_url_map:
-        print("Title:", article, "\nURL:",title_url_map[article])
+    # for article in title_url_map:
+    #     print("Title:", article, "\nURL:",title_url_map[article])
 
     # method for inserting title and URL into database, just comment out if not needed
     insert(title_url_map)
@@ -35,6 +35,9 @@ def insert(title_url_map):
     conn.execute('''CREATE TABLE IF NOT EXISTS NEWS
              (TITLE           TEXT,
               URL             TEXT);''')
+
+    #deletes old Forbes news
+    conn.execute('''DELETE FROM NEWS WHERE URL LIKE '%www.forbes.com%';''')
 
     # insert the title and url of each article in DB
     for article in title_url_map:
