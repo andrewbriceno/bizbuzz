@@ -241,3 +241,37 @@ margin-bottom: 0;
     font-weight: bold;
     margin-top: 15px;
 }
+.searchform input[type=search]
+{
+    margin-left: 360px;
+
+    margin-top: 50px;
+    border: solid 1px grey;
+    border-radius: 8px;
+    padding: 8px;
+    font-size: 16px;
+    width: 500px;
+    height: 50px;
+}
+.category
+{
+    margin-right: 800px;
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+    color: black;
+    padding-left: 200px;
+    margin-bottom: 30px;
+}
+.category a{
+    background-color: #055662;
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 8px;
+    letter-spacing: 0.05em;
+margin-right: 20px;
+}
+.category a:hover
+{
+    text-decoration: none;
+}

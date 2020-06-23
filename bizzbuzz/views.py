@@ -15,3 +15,6 @@ def signup(request):
 def forgotpassword(request):
     return render(request,'bizzbuzz/forgotpassword.html')
 
+def searchchannel(request):
+    return render(request,'bizzbuzz/searchchannel.html')
+
