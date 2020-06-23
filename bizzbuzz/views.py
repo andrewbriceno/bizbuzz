@@ -6,5 +6,8 @@ def index(request):
 
     return render(request,'bizzbuzz/index.html')
 
-def about(request):
-    return render(request,'bizzbuzz/about.html')
+def login(request):
+    return render(request,'bizzbuzz/login.html')
+
+def signup(request):
+    return render(request,'bizzbuzz/signup.html')

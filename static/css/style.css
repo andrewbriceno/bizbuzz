@@ -13,6 +13,10 @@ font-family: Georgia;
     letter-spacing: 0.05em;
     color: white;
 }
+.mainHeading a:hover
+{
+    text-decoration: none;
+}
 .subHeading{
    font-size: 16px;
 margin-top: 8px;
@@ -90,6 +94,28 @@ background-color: #055662;
     margin-right: -5px;
     overflow-x: hidden;
 }
+.loginHeading
+{
+    font-size: 28px;
+    font-weight: bold;
+    color: #055662;
+    margin-left: 530px;
+    padding-top: 60px;
+}
+.hintText
+{
+    padding-top: 25px;
+   margin-left: 300px;
+    font-size: 14px;
+    color: white;
+}
+.signupText
+{
+  padding-top: 25px;
+   margin-left: 90px;
+    font-size: 14px;
+    color: white;
+}
 .favoritebar
 {
     padding-top: 5px;
@@ -122,6 +148,52 @@ margin-bottom: 0;
     flex-wrap: wrap;
 
 }
+.loginContainer
+{
+ margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+    margin-left: 350px;
+    margin-top: 15px;
+    border: darkgray solid 1px;
+    border-radius: 5px;
+    background-color: #055662;
+    width: 450px;
+    margin-right:460px;
+    color: white;
+}
+.loginContainer form
+{
+    padding-top: 15px;
+}
+.loginContainer input
+{
+    background-color: white;
+    width: 300px;
+    margin-left: 65px;
+    padding: 8px;
+    margin-top: 15px;
+    border-radius: 8px;
+    border: none;
+    height: 28px;
+    margin-bottom: 10px;
+}
+.loginContainer input[type=submit]
+{
+    font-size: 18px;
+    width: 315px;
+    padding: 10px;
+    height: 40px;
+    color: #055662;
+    font-weight: bold;
+}
+.loginContainer input[type=submit]:hover
+{
+    cursor: pointer;
+    color: lightsteelblue;
+}
+
 .newsCard
 {
     margin-bottom: 20px;
