@@ -2,12 +2,16 @@ from bs4 import BeautifulSoup
 import requests
 
 def main():
-    #In order - Tech, Finance, Strategy, Retail, Executive, Prime, Intelligence, Politics, Transportation
+    #In order: Tech, Finance, Strategy, Retail, Executive, Prime, Intelligence, Politics, Transportation, Markets,
+    # Science, News, Healthcare, Media, Enterprise, Advertising
     BIurls = ["https://www.businessinsider.com/sai", "https://www.businessinsider.com/clusterstock",
               "https://www.businessinsider.com/warroom", "https://www.businessinsider.com/retail",
               "https://www.businessinsider.com/thelife", "https://www.businessinsider.com/prime",
               "https://www.businessinsider.com/research", "https://www.businessinsider.com/politics",
-              "https://www.businessinsider.com/transportation"]
+              "https://www.businessinsider.com/transportation", "https://www.businessinsider.com/moneygame",
+              "https://www.businessinsider.com/science", "https://www.businessinsider.com/news",
+              "https://www.businessinsider.com/healthcare", "https://www.businessinsider.com/media",
+              "https://www.businessinsider.com/enterprise", "https://www.businessinsider.com/advertising"]
 
     urls = set()
     titles = set()
