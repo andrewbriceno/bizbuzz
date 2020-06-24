@@ -1,28 +1,34 @@
 from urllib.request import urlopen
-from bs4 import BeautifulSoup as soup
+from bs4 import BeautifulSoup
+import requests
 import sqlite3
 
 def main():
-    myurl = 'https://www.forbes.com/business'
+    req = requests.get('https://www.forbes.com/business')
+    soup = BeautifulSoup(req.content, features='html.parser')
 
-    # open up connection and grab the page
-    uclient = urlopen(myurl)
-    page_html = uclient.read()
-    uclient.close()
+    urls = []
+    titles = []
+    summary = []
 
-    #parse the page for h2 tags
-    page_soup = soup(page_html, 'html.parser')
-    article_titles = page_soup.findAll('h2')
+    #finds each article
+    articles=soup.findAll('h2')
 
-    #maps each article title to its URL
-    title_url_map = {}
-    for title in article_titles:
-        if title.a is not None:
-            title_url_map[title.a.find(text=True)]=title.a['href']
+    for article in articles:
+        if article.a is not None:
+            url = (article.a['href'])
+            urls.append(url)
+            req = requests.get(url)
+            soup = BeautifulSoup(req.content, features='html.parser')
+            titles.append(soup.find('title').text)
+            first_para = soup.find('div', class_="article-body-container")
+            first_line = first_para.find('p').text
+            summary.append(first_line)
 
-    #print the map
-    # for article in title_url_map:
-    #     print("Title:", article, "\nURL:",title_url_map[article])
+    title_url_map=zip(titles, urls, summary)
+
+    #for elem in lists:
+        #print(elem)
 
     # method for inserting title and URL into database, just comment out if not needed
     insert(title_url_map)
