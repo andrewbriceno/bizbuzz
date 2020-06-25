@@ -1,30 +1,33 @@
 from django.http import HttpResponse
 from django.template import loader
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
 # from .models import Register
 
-def index(request):
+def index_view(request):
     return render(request,'bizzbuzz/index.html')
 
-def login(request):
+def login_view(request):
     if request.method == 'GET':
         return render(request, 'bizzbuzz/login.html')
     elif request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
-        if user is not None:    #gets username and password, logs the user in
-            login(user)
-            #FIXME: redirect to index.html but logged in?  Show username in upper navbar
-            #FIXME: IntegrityError at /bizzbuzz/signup/ UNIQUE constraint failed: auth_user.username
+        if user:    #gets username and password, logs the user in
+            login(request, user)
+            context={}
+            context['name'] = username
+            #FIXME: redirect to home and login (below in signup_view) doesn't work
+            redirect('home')
+            return render(request, 'bizzbuzz/home.html', context)
         else:
-            # FIXME: user didn't put in the required fields or some other error occurred
-            # needs to print something like "Sorry, login didn't work.  Try again!" on login page
+            messages.info(request, 'Username or password is incorrect')
             return render(request, 'bizzbuzz/login.html')
 
-def signup(request):
+def signup_view(request):
     if request.method == 'GET':
         return render(request, 'bizzbuzz/signup.html')
     elif request.method == 'POST':
@@ -32,23 +35,26 @@ def signup(request):
             #gets the fields from the form in signup.html and puts into database
             username = request.POST.get('username')
             password = request.POST.get('password')
-            user = User.objects.create_user(username, None, password)
-            #user.save()
-
-            #run 'SELECT * from auth_user' in query console to see contents of this table
-            return render(request, 'bizzbuzz/login.html')
-    else:
-        #FIXME: user didn't put in the required fields or some other error occurred
-        #needs to print something like "Sorry, sign up didn't work.  Try again!" on signup page
-        return render(request, 'bizzbuzz/signup.html')
+            if not User.objects.filter(username=username).exists():
+                user = User.objects.create_user(username, None, password)
+                user.save()
+                #run 'SELECT * from auth_user' in query console to see contents of this table
+                redirect('login')
+                return render(request, 'bizzbuzz/login.html')
+            else:
+                messages.error(request, 'Username is already taken')
+                return render(request, 'bizzbuzz/signup.html')
+        else:
+            messages.error(request, 'Please enter a valid username and password')
+            return render(request, 'bizzbuzz/signup.html')
 
 # def forgotpassword(request):
 #     return render(request,'bizzbuzz/forgotpassword.html')
 
-def searchchannel(request):
+def searchchannel_view(request):
     return render(request,'bizzbuzz/searchchannel.html')
 
 #FIXME: shouldn't be able to hit this unless logged in
-def home(request):
+def home_view(request):
     return render(request,'bizzbuzz/home.html')
 

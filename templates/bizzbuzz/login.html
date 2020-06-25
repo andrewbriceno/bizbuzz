@@ -25,7 +25,7 @@ $(function() {
 <div class="navbar">
 <span class="mainHeading"><a href="/bizzbuzz">Bizzbuzz</a> </span>
     <span class="subHeading"><a href="/bizzbuzz/searchchannel"> Search Channel</a></span>
-    <span class="subHeading"><a href="/bizzbuzz/login"> Login</a></span>
+    {# <span class="subHeading"><a href="/bizzbuzz/login"> Login</a></span>#}
     <span class="subHeading"><a href="/bizzbuzz/signup"> Sign Up</a></span>
 </div>
 <div class="container">
@@ -47,9 +47,17 @@ $(function() {
         {% csrf_token %}
         <input type="text" name="username" placeholder="Enter username"><br>
         <input type="password" name="password" placeholder="Enter password"><br>
-{#        <span class="hintText"><a href="/bizzbuzz/forgotpassword">Forgotten Password?</a> </span>#}
+      {#<span class="hintText"><a href="/bizzbuzz/forgotpassword">Forgotten Password?</a> </span>#}
         <input type="submit" name="" value="Login" class="logibtn"><br>
-        <a href="/bizzbuzz/signup "style="color:#000000">Want to create an account? Sign up here!</a>
+        <a href="/bizzbuzz/signup" style="color:white; margin-left:25px">Want to create an account? Sign up here!</a>
+
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
     </form>
 </div>
 
