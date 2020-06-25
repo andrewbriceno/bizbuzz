@@ -21,3 +21,6 @@ def searchchannel(request):
 def home(request):
     return render(request,'bizzbuzz/home.html')
 
+def selectchannel(request):
+    return render(request,'bizzbuzz/selectchannel.html')
+

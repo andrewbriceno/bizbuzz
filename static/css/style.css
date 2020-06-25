@@ -276,3 +276,46 @@ margin-right: 20px;
 {
     text-decoration: none;
 }
+.addbtn{
+    background-color: white;
+    color: #055662;
+    width: 230px;
+    height: 30px;
+    margin-right:2px;
+    border: none;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.addbtn:hover
+{
+    font-weight: bold;
+}
+.channelimg
+{
+    margin-top: 20px;
+    margin-left: 15px;
+    height: 50px;
+    width: 50px;
+}
+.feedmod a{
+    color: #055662;
+    padding-left: 200px;
+    font-size: 16px;
+
+}
+.feedmod a:hover
+{
+    cursor: pointer;
+    text-decoration: none;
+}
+.feedmod
+{
+    display: flex;
+    flex-direction: column;
+    border-top:darkgray solid 1px;
+    background-color: white;
+    margin-right: -5px;
+    overflow-x: hidden;
+    padding-left: 150px;
+}
