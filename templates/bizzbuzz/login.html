@@ -24,7 +24,6 @@ $(function() {
 </script>
 <div class="navbar">
 <span class="mainHeading"><a href="/bizzbuzz">Bizzbuzz</a> </span>
-    <span class="subHeading"><a href="/bizzbuzz/login"> Login</a></span>
     <span class="subHeading"><a href="/bizzbuzz/signup"> Sign Up</a></span>
 </div>
 <div class="container">
@@ -34,12 +33,21 @@ $(function() {
         <span class="loginHeading">Login</span>
 
 <div class="loginContainer">
-    <form action="/bizzbuzz/home" >
-        <input type="text" placeholder="Enter username" required><br>
-        <input type="password" placeholder="Enter password" required><br>
-        <span class="hintText"><a href="/bizzbuzz/forgotpassword">Forgotten Password?</a> </span>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Enter username"><br>
+        <input type="password" name="password" placeholder="Enter password"><br>
+      {#<span class="hintText"><a href="/bizzbuzz/forgotpassword">Forgotten Password?</a> </span>#}
         <input type="submit" name="" value="Login" class="logibtn"><br>
-        <span class="signupText">Want to create an account with e-mail?<a href="/bizzbuzz/signup"> Sign up</a> </span>
+        <a href="/bizzbuzz/signup" style="color:white; margin-left:25px">Want to create an account? Sign up here!</a>
+
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
     </form>
 </div>
 
