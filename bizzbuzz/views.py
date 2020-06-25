@@ -1,4 +1,3 @@
-from django.contrib.auth.decorators import login_required
 # from django.http import HttpResponse
 # from django.template import loader
 from django.shortcuts import render, redirect
@@ -18,17 +17,13 @@ def login_view(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
-        if request.user.is_authenticated:
-            messages.error(request, 'This account is already logged in')
-            return render(request, 'bizzbuzz/login.html')
+        # if request.user.is_authenticated:
+        #     messages.error(request, 'This account is already logged in')
+        #     return render(request, 'bizzbuzz/login.html')
 
         if user:    #gets username and password, logs the user in
             login(request, user)
-            context={}
-            context['name'] = username
-            #FIXME: redirect to home doesn't work
-            #return redirect('home', kwargs={'name': username})
-            return render(request, 'bizzbuzz/home.html', context)
+            return redirect('home')
         else:
             messages.error(request, 'Username or password is incorrect')
             return render(request, 'bizzbuzz/login.html')
@@ -63,12 +58,10 @@ def forgotpassword_view(request):
 def searchchannel_view(request):
     return render(request,'bizzbuzz/searchchannel.html')
 
-#FIXME: shouldn't be able to hit this unless logged in
-@login_required(login_url='/bizzbuzz/login/') #this doesn't work for some reason???
 def home_view(request):
     if not request.user.is_authenticated:
-        return redirect('bizzbuzz')
-    return render(request,'bizzbuzz/home.html')
+        return redirect('login')
+    return render(request,'bizzbuzz/home.html', {'name': request.user.username})
 
 def selectchannel_view(request):
     return render(request,'bizzbuzz/selectchannel.html')
