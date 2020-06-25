@@ -1,10 +1,12 @@
-from django.http import HttpResponse
-from django.template import loader
+from django.contrib.auth.decorators import login_required
+# from django.http import HttpResponse
+# from django.template import loader
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 # from .models import Register
+
 
 def index_view(request):
     return render(request,'bizzbuzz/index.html')
@@ -16,16 +18,24 @@ def login_view(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
+        if request.user.is_authenticated:
+            messages.error(request, 'This account is already logged in')
+            return render(request, 'bizzbuzz/login.html')
+
         if user:    #gets username and password, logs the user in
             login(request, user)
             context={}
             context['name'] = username
-            #FIXME: redirect to home and login (below in signup_view) doesn't work
-            redirect('home')
+            #FIXME: redirect to home doesn't work
+            #return redirect('home', kwargs={'name': username})
             return render(request, 'bizzbuzz/home.html', context)
         else:
-            messages.info(request, 'Username or password is incorrect')
+            messages.error(request, 'Username or password is incorrect')
             return render(request, 'bizzbuzz/login.html')
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')
 
 def signup_view(request):
     if request.method == 'GET':
@@ -39,8 +49,7 @@ def signup_view(request):
                 user = User.objects.create_user(username, None, password)
                 user.save()
                 #run 'SELECT * from auth_user' in query console to see contents of this table
-                redirect('login')
-                return render(request, 'bizzbuzz/login.html')
+                return redirect('login')
             else:
                 messages.error(request, 'Username is already taken')
                 return render(request, 'bizzbuzz/signup.html')
@@ -55,6 +64,9 @@ def searchchannel_view(request):
     return render(request,'bizzbuzz/searchchannel.html')
 
 #FIXME: shouldn't be able to hit this unless logged in
+@login_required(login_url='/bizzbuzz/login/') #this doesn't work for some reason???
 def home_view(request):
+    if not request.user.is_authenticated:
+        return redirect('bizzbuzz')
     return render(request,'bizzbuzz/home.html')
 
