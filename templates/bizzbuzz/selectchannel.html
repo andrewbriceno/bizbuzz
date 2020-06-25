@@ -31,113 +31,34 @@ $(function() {
 </div>
 <div class="container" >
 
-    <div class="feed" style="padding-left: 150px;padding-right: 68px;padding-top: 15px;">
+    <div class="feed" style="padding-left: 150px;padding-right: 68px;padding-bottom: 150px;">
 
-            <span class="subHeading" style="font-weight: bold;font-size: 22px;margin-left: 450px;">
-                Add channel to your list
-</span>
-        <form action="" method="post" class="searchform" style="margin-top: -25px;">
-    <input type="search" placeholder="Enter channel name...">
-            <a href="/bizzbuzz/home" style="
-            background-color: #055662;
-            color:white;margin-left: 150px;font-size: 25px;text-decoration: none;
-            font-weight: bold;padding: 8px;border-radius: 8px;padding-right: 35px;">Next</a>
-</form>
-        <div class="category">
+        <span class="loginHeading" style="margin-left: 430px;">Add channel to your list</span>
 
-<a href=#>Business</a>
-            <a href=#>Design</a>
-            <a href=#>Development</a>
-            <a href=#>Featured</a>
-            <a href=#>Marketing</a>
-            <a href=#>News</a>
-            <a href=#>Photography</a>
-            <a href=#>Reddit</a>
-        </div>
-        <div class="news">
-            <a href="">
-<div class="newsCard">
-<img src="{% static "images/hacker.png" %}" class="channelimg">
-    <div class="textcontainer">
-        <span class="subHeading">Hacker News</span><br>
-        <span class="feedtext">A social news website focusing on computer science and entrepreneurship.</span><br>
-        <button class="addbtn">Add</button>
-        </div>
-</div></a>
-            <a href="">
-<div class="newsCard">
-<img src="{% static "images/hacker.png" %}" class="channelimg">
-    <div class="textcontainer">
-        <span class="subHeading">Hacker News</span><br>
-        <span class="feedtext">A social news website focusing on computer science and entrepreneurship.</span><br>
-        <button class="addbtn">Add</button>
-        </div>
-</div></a>
-            <a href="">
-<div class="newsCard">
-<img src="{% static "images/hacker.png" %}" class="channelimg">
-    <div class="textcontainer">
-        <span class="subHeading">Hacker News</span><br>
-        <span class="feedtext">A social news website focusing on computer science and entrepreneurship.</span><br>
-        <button class="addbtn">Add</button>
-        </div>
-</div></a>
-            <a href="">
-<div class="newsCard">
-<img src="{% static "images/hacker.png" %}" class="channelimg">
-    <div class="textcontainer">
-        <span class="subHeading">Hacker News</span><br>
-        <span class="feedtext">A social news website focusing on computer science and entrepreneurship.</span><br>
-        <button class="addbtn">Add</button>
-        </div>
-</div></a>
-            <a href="">
-<div class="newsCard">
-<img src="{% static "images/hacker.png" %}" class="channelimg">
-    <div class="textcontainer">
-        <span class="subHeading">Hacker News</span><br>
-        <span class="feedtext">A social news website focusing on computer science and entrepreneurship.</span><br>
-        <button class="addbtn">Add</button>
-        </div>
-</div></a>
-            <a href="">
-<div class="newsCard">
-<img src="{% static "images/hacker.png" %}" class="channelimg">
-    <div class="textcontainer">
-        <span class="subHeading">Hacker News</span><br>
-        <span class="feedtext">A social news website focusing on computer science and entrepreneurship.</span><br>
-        <button class="addbtn">Add</button>
-        </div>
-</div></a>
-            <a href="">
-<div class="newsCard">
-<img src="{% static "images/hacker.png" %}" class="channelimg">
-    <div class="textcontainer">
-        <span class="subHeading">Hacker News</span><br>
-        <span class="feedtext">A social news website focusing on computer science and entrepreneurship.</span><br>
-        <button class="addbtn">Add</button>
-        </div>
-</div></a>
-            <a href="">
-<div class="newsCard">
-<img src="{% static "images/hacker.png" %}" class="channelimg">
-    <div class="textcontainer">
-        <span class="subHeading">Hacker News</span><br>
-        <span class="feedtext">A social news website focusing on computer science and entrepreneurship.</span><br>
-        <button class="addbtn">Add</button>
-        </div>
-</div></a>
-            <a href="">
-<div class="newsCard">
-<img src="{% static "images/hacker.png" %}" class="channelimg">
-    <div class="textcontainer">
-        <span class="subHeading">Hacker News</span><br>
-        <span class="feedtext">A social news website focusing on computer science and entrepreneurship.</span><br>
-        <button class="addbtn">Add</button>
-        </div>
-</div></a>
-        </div>
-    </div>
+<div class="loginContainer">
+    <form action="/bizzbuzz/home" >
+        <div class="row">
+            <span class="subHeading" style="padding-left: 85px;padding-top: 15px;font-size: 20px;">Microsoft</span>
+  <input type="checkbox" value="Microsoft" style="margin-left: -85px;margin-top: 22px;">
+            </div>
+<div class="row">
+            <span class="subHeading" style="padding-left: 85px;padding-top: 15px;font-size: 20px;">Apple</span>
+  <input type="checkbox" value="Apple" style="margin-left: -53px;margin-top: 22px;">
+            </div>
+        <div class="row">
+            <span class="subHeading" style="padding-left: 85px;padding-top: 15px;font-size: 20px;">Google</span>
+  <input type="checkbox" value="Google" style="margin-left: -63px;margin-top: 22px;">
+            </div>
+        <div class="row">
+            <span class="subHeading" style="padding-left: 85px;padding-top: 15px;font-size: 20px;">Facebook</span>
+  <input type="checkbox" value="Facebook" style="margin-left: -85px;margin-top: 22px;">
+            </div>
+        <input type="submit" name="" value="Next" class="logibtn"><br>
+
+    </form>
+</div>
+
+</div>
     </div>
 
 </body>

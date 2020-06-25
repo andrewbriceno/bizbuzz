@@ -319,3 +319,8 @@ margin-right: 20px;
     overflow-x: hidden;
     padding-left: 150px;
 }
+.row
+{
+    display: flex;
+    flex-direction: row;
+}
