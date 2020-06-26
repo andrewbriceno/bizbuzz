@@ -35,7 +35,8 @@ $(function() {
         <span class="loginHeading" style="margin-left: 430px;">Add channel to your list</span>
 
 <div class="loginContainer">
-    <form action="/bizzbuzz/home" >
+    <form action="" method="POST">
+        {% csrf_token %}
         <div class="row">
             <span class="subHeading" style="padding-left: 85px;padding-top: 15px;font-size: 20px;">Microsoft</span>
   <input type="checkbox" value="Microsoft" style="margin-left: -85px;margin-top: 22px;">

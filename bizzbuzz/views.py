@@ -44,7 +44,7 @@ def signup_view(request):
                 user = User.objects.create_user(username, None, password)
                 user.save()
                 #run 'SELECT * from auth_user' in query console to see contents of this table
-                return redirect('login')
+                return redirect('selectchannel')
             else:
                 messages.error(request, 'Username is already taken')
                 return render(request, 'bizzbuzz/signup.html')
@@ -66,7 +66,10 @@ def home_view(request):
     return render(request,'bizzbuzz/home.html', {'name': request.user.username})
 
 def selectchannel_view(request):
-    if not request.user.is_authenticated:
-        return redirect('login')
-    return render(request,'bizzbuzz/selectchannel.html')
+    # if not request.user.is_authenticated:
+    #     return redirect('login')
+    if request.method == 'GET':
+        return render(request,'bizzbuzz/selectchannel.html')
+    elif request.method == 'POST':
+        return render((request, 'bizzbuzz/login.html')
 
