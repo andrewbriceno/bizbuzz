@@ -58,13 +58,13 @@ def signup_view(request):
             messages.error(request, 'Please enter a valid username and password')
             return render(request, 'bizzbuzz/signup.html')
 
-def forgotpassword_view(request):
-    return render(request,'bizzbuzz/forgotpassword.html')
-
-def searchchannel_view(request):
-    if not request.user.is_authenticated:
-        return redirect('login')
-    return render(request,'bizzbuzz/searchchannel.html', {'name': request.user.username})
+# def forgotpassword_view(request):
+#     return render(request,'bizzbuzz/forgotpassword.html')
+#
+# def searchchannel_view(request):
+#     if not request.user.is_authenticated:
+#         return redirect('login')
+#     return render(request,'bizzbuzz/searchchannel.html', {'name': request.user.username})
 
 def home_view(request):
     if not request.user.is_authenticated:
@@ -75,7 +75,7 @@ def selectchannel_view(request):
     if not request.user.is_authenticated:
         return redirect('login')
     if request.method == 'GET':
-        return render(request,'bizzbuzz/selectchannel.html')
+        return render(request,'bizzbuzz/selectchannel.html', {'name': request.user.username})
     elif request.method == 'POST':
         username = request.user.username
         MyPrefForm = PrefForm(request.POST)
