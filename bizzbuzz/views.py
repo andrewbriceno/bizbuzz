@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from bizzbuzz.models import Preferences
 # from .models import Register
 
 
@@ -43,6 +44,9 @@ def signup_view(request):
             if not User.objects.filter(username=username).exists():
                 user = User.objects.create_user(username, None, password)
                 user.save()
+
+                preference = Preferences(username=username)
+                preference.save()
                 #run 'SELECT * from auth_user' in query console to see contents of this table
                 return redirect('selectchannel')
             else:
@@ -71,5 +75,12 @@ def selectchannel_view(request):
     if request.method == 'GET':
         return render(request,'bizzbuzz/selectchannel.html')
     elif request.method == 'POST':
-        return render((request, 'bizzbuzz/login.html')
+        if "Microsoft" in request.GET:
+            username = request.POST.get('username')
+
+        # if request.POST.get('username'):
+        # if request.POST.get('username'):
+        # if request.POST.get('username'):
+        # if request.POST.get('username'):
+        return render(request, 'bizzbuzz/login.html')
 
