@@ -1,4 +1,3 @@
-from datetime import datetime, timedelta
 from urllib.request import urlopen
 from django.core.management.base import BaseCommand
 from bizzbuzz.models import News
