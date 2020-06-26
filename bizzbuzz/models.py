@@ -1,6 +1,5 @@
 from django.db import models
 
-
 # table name: bizzbuzz_news
 # see all news articles in DB: select * from bizzbuzz_news inside Query Console
 # run 'python manage.py populate_db' to run script that populates DB for the first time
