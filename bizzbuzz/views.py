@@ -56,7 +56,9 @@ def forgotpassword_view(request):
     return render(request,'bizzbuzz/forgotpassword.html')
 
 def searchchannel_view(request):
-    return render(request,'bizzbuzz/searchchannel.html')
+    if not request.user.is_authenticated:
+        return redirect('login')
+    return render(request,'bizzbuzz/searchchannel.html', {'name': request.user.username})
 
 def home_view(request):
     if not request.user.is_authenticated:
@@ -64,5 +66,7 @@ def home_view(request):
     return render(request,'bizzbuzz/home.html', {'name': request.user.username})
 
 def selectchannel_view(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
     return render(request,'bizzbuzz/selectchannel.html')
 
