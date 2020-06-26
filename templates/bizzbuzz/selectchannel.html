@@ -23,36 +23,35 @@ $(function() {
 });
 </script>
 <div class="navbar">
-<span class="mainHeading"><a href="">Bizzbuzz</a> </span>
-    <span class="subHeading"><a href="/bizzbuzz/searchchannel"> Add Channel</a></span>
-    <span class="subHeading"><a href="/bizzbuzz/login"> Logout</a></span>
-    <span class="subHeading"><a href=""> Settings</a></span>
+<span class="mainHeading"><a href="/bizzbuzz/home">Bizzbuzz</a> </span>
+    <span class="subHeading"><a href="/bizzbuzz/selectchannel">Manage Company Subscriptions</a></span>
+    <span class="subHeading"><a href="/bizzbuzz/login">Logout</a></span>
+{#    <span class="subHeading"><a href=""> Settings</a></span>#}
 </div>
 <div class="container" >
 
     <div class="feed" style="padding-left: 150px;padding-right: 68px;padding-bottom: 150px;">
 
-        <span class="loginHeading" style="margin-left: 430px;">Add channel to your list</span>
-        <span class="timeheading" style="margin-left: 320px;">***If you make no changes here, you will receive news from all the listed companies***</span>
+        <span class="loginHeading" style="margin-left: 390px;">Unsubscribe From A Company</span>
 
 <div class="loginContainer">
     <form action="" method="POST">
         {% csrf_token %}
         <div class="row">
             <span class="subHeading" style="padding-left: 85px;padding-top: 15px;font-size: 20px;">Microsoft</span>
-  <input type="checkbox" checked="checked" value="Microsoft" name="Microsoft" style="margin-left: -85px;margin-top: 22px;">
+  <input type="checkbox" value="Microsoft" name="microsoft" style="margin-left: -85px;margin-top: 22px;">
             </div>
-<div class="row">
+        <div class="row">
             <span class="subHeading" style="padding-left: 85px;padding-top: 15px;font-size: 20px;">Apple</span>
-  <input type="checkbox" checked="checked" value="Apple" name="Apple" style="margin-left: -53px;margin-top: 22px;">
+  <input type="checkbox" value="Apple" name="apple" style="margin-left: -53px;margin-top: 22px;">
             </div>
         <div class="row">
             <span class="subHeading" style="padding-left: 85px;padding-top: 15px;font-size: 20px;">Google</span>
-  <input type="checkbox" checked="checked" value="Google" name="Google" style="margin-left: -63px;margin-top: 22px;">
+  <input type="checkbox" value="Google" name="google" style="margin-left: -63px;margin-top: 22px;">
             </div>
         <div class="row">
             <span class="subHeading" style="padding-left: 85px;padding-top: 15px;font-size: 20px;">Facebook</span>
-  <input type="checkbox" checked="checked" value="Facebook" name="Facebook" style="margin-left: -85px;margin-top: 22px;">
+  <input type="checkbox" value="Facebook" name="facebook" style="margin-left: -85px;margin-top: 22px;">
             </div>
         <input type="submit" name="" value="Next" class="logibtn"><br>
 
