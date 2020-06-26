@@ -4,6 +4,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from bizzbuzz.models import Preferences
+from bizzbuzz.forms import PrefForm
 # from .models import Register
 
 
@@ -23,6 +25,7 @@ def login_view(request):
 
         if user:    #gets username and password, logs the user in
             login(request, user)
+            #if they've never logged in before, go to select channels
             return redirect('home')
         else:
             messages.error(request, 'Username or password is incorrect')
@@ -43,6 +46,9 @@ def signup_view(request):
             if not User.objects.filter(username=username).exists():
                 user = User.objects.create_user(username, None, password)
                 user.save()
+
+                preference = Preferences(username=username)
+                preference.save()
                 #run 'SELECT * from auth_user' in query console to see contents of this table
                 return redirect('login')
             else:
@@ -52,13 +58,13 @@ def signup_view(request):
             messages.error(request, 'Please enter a valid username and password')
             return render(request, 'bizzbuzz/signup.html')
 
-def forgotpassword_view(request):
-    return render(request,'bizzbuzz/forgotpassword.html')
-
-def searchchannel_view(request):
-    if not request.user.is_authenticated:
-        return redirect('login')
-    return render(request,'bizzbuzz/searchchannel.html', {'name': request.user.username})
+# def forgotpassword_view(request):
+#     return render(request,'bizzbuzz/forgotpassword.html')
+#
+# def searchchannel_view(request):
+#     if not request.user.is_authenticated:
+#         return redirect('login')
+#     return render(request,'bizzbuzz/searchchannel.html', {'name': request.user.username})
 
 def home_view(request):
     if not request.user.is_authenticated:
@@ -68,5 +74,33 @@ def home_view(request):
 def selectchannel_view(request):
     if not request.user.is_authenticated:
         return redirect('login')
-    return render(request,'bizzbuzz/selectchannel.html')
+    if request.method == 'GET':
+        return render(request,'bizzbuzz/selectchannel.html', {'name': request.user.username})
+    elif request.method == 'POST':
+        username = request.user.username
+        MyPrefForm = PrefForm(request.POST)
+        preference = Preferences.objects.get(username=username)
+        if MyPrefForm.is_valid():
+            if "apple" in request.POST:
+                current = preference.apple
+                new = not current
+                preference.apple = new
+                preference.save()
+            if "microsoft" in request.POST:
+                current = preference.microsoft
+                new = not current
+                preference.microsoft = new
+                preference.save()
+            if "facebook" in request.POST:
+                current = preference.facebook
+                new = not current
+                preference.facebook = new
+                preference.save()
+            if "google" in request.POST:
+                current = preference.google
+                new = not current
+                preference.google = new
+                preference.save()
+
+        return render(request, 'bizzbuzz/home.html', {'name': request.user.username})
 
