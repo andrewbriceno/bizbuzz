@@ -33,7 +33,16 @@ $(function() {
 
     <div class="feed" style="padding-left: 150px;padding-right: 68px;padding-bottom: 150px;">
 
-        <span class="loginHeading" style="margin-left: 390px;">Manage Company Subscriptions</span>
+        <span class="loginHeading" style="margin-left: 370px;">Manage Company Subscriptions</span>
+        <span class="loginHeading" style="margin-left: 440px;font-size: 16px;padding-top: 0px;">You Are Currently Subscribed To: </span>
+        {% for field in preferred %}
+        <span class="loginHeading" style="margin-left: 510px;font-size: 16px;padding-top: 0px;">{{ field }} </span>
+        {% endfor %}
+
+        <span class="loginHeading" style="margin-left: 420px;font-size: 16px;padding-top: 0px;">You Are Not Currently Subscribed To: </span>
+        {% for field in not_preferred %}
+        <span class="loginHeading" style="margin-left: 510px;font-size: 16px;padding-top: 0px;">{{ field }} </span>
+        {% endfor %}
 
 <div class="loginContainer">
     <form action="" method="POST">

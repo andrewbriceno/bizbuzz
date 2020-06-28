@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from bizzbuzz.models import Preferences
 from bizzbuzz.forms import PrefForm
+import time
 # from .models import Register
 
 
@@ -74,33 +75,61 @@ def home_view(request):
 def selectchannel_view(request):
     if not request.user.is_authenticated:
         return redirect('login')
+    username = request.user.username
+    preference = Preferences.objects.get(username=username) #.values_list('apple', 'microsoft', 'google', 'facebook')
+    companies = ['apple', 'google', 'facebook', 'microsoft']
     if request.method == 'GET':
-        return render(request,'bizzbuzz/selectchannel.html', {'name': request.user.username})
+        preferred = []
+        not_preferred = []
+        i = 0
+        for i in companies: #gets the current values of each company, puts in appropriate list, and passes lists to HTML
+            value = getattr(preference, i)
+            if value is False:
+                not_preferred.append(i.upper())
+            else:
+                preferred.append(i.upper())
+        # print(preferred)
+        # print(not_preferred)
+        return render(request,'bizzbuzz/selectchannel.html', {'name': request.user.username, 'preferred': preferred, 'not_preferred': not_preferred})
     elif request.method == 'POST':
-        username = request.user.username
+        # print("IN POST")
         MyPrefForm = PrefForm(request.POST)
-        preference = Preferences.objects.get(username=username)
+        changePref = Preferences.objects.get(username=username)
+        preferred = []
+        not_preferred = []
         if MyPrefForm.is_valid():
             if "apple" in request.POST:
-                current = preference.apple
+                current = changePref.apple
                 new = not current
-                preference.apple = new
-                preference.save()
+                changePref.apple = new
+                changePref.save()
             if "microsoft" in request.POST:
-                current = preference.microsoft
+                current = changePref.microsoft
                 new = not current
-                preference.microsoft = new
-                preference.save()
+                changePref.microsoft = new
+                changePref.save()
             if "facebook" in request.POST:
-                current = preference.facebook
+                current = changePref.facebook
                 new = not current
-                preference.facebook = new
-                preference.save()
+                changePref.facebook = new
+                changePref.save()
             if "google" in request.POST:
-                current = preference.google
+                current = changePref.google
                 new = not current
-                preference.google = new
-                preference.save()
+                changePref.google = new
+                changePref.save()
+        i = 0
+        for i in companies:
+            print(i)
+            value = getattr(preference, i)
+            print(value)
+            if value is False:
+                not_preferred.append(i.upper())
+            else:
+                preferred.append(i.upper())
+        # print(preferred)
+        # print(not_preferred)
+        # print("OUT OF POST")
+        # print(request)
 
-        return render(request, 'bizzbuzz/home.html', {'name': request.user.username})
-
+        return render(request, 'bizzbuzz/selectchannel.html', {'name': request.user.username, 'preferred': preferred, 'not_preferred': not_preferred})
