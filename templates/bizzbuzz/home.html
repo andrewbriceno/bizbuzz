@@ -42,85 +42,28 @@ $(function() {
 </div>
     <div class="feed">
     <div class="favoritebar">
-        <span class="subHeading"><a href="">Add to Favourites</a> </span>
-        <span class="subHeading"><a href="">Remove from Favourites</a> </span>
+        <span class="subHeading"><a href="">Add to Favorites</a> </span>
+        <span class="subHeading"><a href="">Remove from Favorites</a> </span>
     </div>
-        <div class="timeheading">
-            <h1>Today</h1>
-        </div>
-        <div class="news">
-            <a href="">
-<div class="newsCard">
-<button class="number" disabled>1</button>
-    <div class="textcontainer">
-        <span class="feedtext">ProtoPie 5.0–Introducing interaction recipes, more than a handoff</span>
-        <span class="author">By Fredo Tan</span>
-        </div>
-</div></a>
-            <a href="">
-<div class="newsCard">
-<button class="number" disabled>2</button>
-    <div class="textcontainer">
-        <span class="feedtext">ProtoPie 5.0–Introducing interaction recipes, more than a handoff</span>
-        <span class="author">By Fredo Tan</span>
-        </div>
-</div></a>
-            <a href="">
-<div class="newsCard">
-<button class="number" disabled>3</button>
-    <div class="textcontainer">
-        <span class="feedtext">ProtoPie 5.0–Introducing interaction recipes, more than a handoff</span>
-        <span class="author">By Fredo Tan</span>
-        </div>
-</div></a>
-            <a href="">
-<div class="newsCard">
-<button class="number" disabled>4</button>
-    <div class="textcontainer">
-        <span class="feedtext">ProtoPie 5.0–Introducing interaction recipes, more than a handoff</span>
-        <span class="author">By Fredo Tan</span>
-        </div>
-</div></a>
-        </div>
         <div class="timeheading">
             <h1>This Week</h1>
         </div>
-              <div class="news">
+        <div class="news">
             <a href="">
-<div class="newsCard">
-<button class="number" disabled>1</button>
+ {% for title, url, summary, index  in articles%}
+        <div class="newsCard">
+<button class="number" disabled>{{ index }}</button>
     <div class="textcontainer">
-        <span class="feedtext">ProtoPie 5.0–Introducing interaction recipes, more than a handoff</span>
-        <span class="author">By Fredo Tan</span>
+        <span class="title">{{ title }}</span>
+        <span class="summary">{{ summary }}</span>
         </div>
-</div></a>
-            <a href="">
-<div class="newsCard">
-<button class="number" disabled>2</button>
-    <div class="textcontainer">
-        <span class="feedtext">ProtoPie 5.0–Introducing interaction recipes, more than a handoff</span>
-        <span class="author">By Fredo Tan</span>
-        </div>
-</div></a>
-            <a href="">
-<div class="newsCard">
-<button class="number" disabled>3</button>
-    <div class="textcontainer">
-        <span class="feedtext">ProtoPie 5.0–Introducing interaction recipes, more than a handoff</span>
-        <span class="author">By Fredo Tan</span>
-        </div>
-</div></a>
-            <a href="">
-<div class="newsCard">
-<button class="number" disabled>4</button>
-    <div class="textcontainer">
-        <span class="feedtext">ProtoPie 5.0–Introducing interaction recipes, more than a handoff</span>
-        <span class="author">By Fredo Tan</span>
-        </div>
-</div></a>
-        </div>
-</div>
-    </div>
+     </div></a>
+        <a href="">
+ {% endfor %}
 
+        </a>
+</div>
+</div>
+</div>
 </body>
 </html>

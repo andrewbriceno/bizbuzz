@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from bizzbuzz.models import Preferences
+from bizzbuzz.models import News
 from bizzbuzz.forms import PrefForm
 import time
 # from .models import Register
@@ -70,7 +71,31 @@ def signup_view(request):
 def home_view(request):
     if not request.user.is_authenticated:
         return redirect('login')
-    return render(request,'bizzbuzz/home.html', {'name': request.user.username})
+    username = request.user.username
+    preference = Preferences.objects.get(username=username)
+    print(preference)
+    companies = ['apple', 'google', 'facebook', 'microsoft']
+    if request.method == 'GET':
+        preferred = []
+        for i in companies: #gets the current values of each company, puts in appropriate list, and passes lists to HTML
+            value = getattr(preference, i)
+            if value is True:
+                preferred.append(i.upper())
+
+    titles= []
+    urls = []
+    summaries = []
+    indices = []
+    i = 1
+    for pref in preferred:
+        news = News.objects.filter(title__icontains=pref)
+        for n in news:
+            titles.append(getattr(n, 'title'))
+            urls.append(getattr(n, 'url'))
+            summaries.append(getattr(n, 'summary'))
+            indices.append(i)
+            i+=1
+    return render(request, 'bizzbuzz/home.html', {'name': username, 'articles' : zip(titles, urls, summaries, indices)})
 
 def selectchannel_view(request):
     if not request.user.is_authenticated:
