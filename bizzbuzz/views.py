@@ -71,6 +71,7 @@ def signup_view(request):
 def home_view(request):
     if not request.user.is_authenticated:
         return redirect('login')
+    #gather user's preferences to use in search later
     username = request.user.username
     preference = Preferences.objects.get(username=username)
     print(preference)
@@ -87,14 +88,22 @@ def home_view(request):
     summaries = []
     indices = []
     i = 1
+
     for pref in preferred:
+        #filter articles containing relevant company name
         news = News.objects.filter(title__icontains=pref)
+        #hard coded 'applebee's' exception, can make more generic if other exceptions arise
+        if pref.lower() == 'apple':
+            news=news.exclude(title__icontains="applebee's")
         for n in news:
-            titles.append(getattr(n, 'title'))
-            urls.append(getattr(n, 'url'))
-            summaries.append(getattr(n, 'summary'))
-            indices.append(i)
-            i+=1
+            #check for duplicate urls
+            if getattr(n, 'url') not in urls:
+                titles.append(getattr(n, 'title'))
+                urls.append(getattr(n, 'url'))
+                summaries.append(getattr(n, 'summary'))
+                indices.append(i)
+                i+=1
+    #zip together titles, urls, summaries and send to home.html
     return render(request, 'bizzbuzz/home.html', {'name': username, 'articles' : zip(titles, urls, summaries, indices)})
 
 def selectchannel_view(request):
