@@ -74,7 +74,6 @@ def home_view(request):
     #gather user's preferences to use in search later
     username = request.user.username
     preference = Preferences.objects.get(username=username)
-    print(preference)
     companies = ['apple', 'google', 'facebook', 'microsoft']
     if request.method == 'GET':
         preferred = []
@@ -167,9 +166,5 @@ def selectchannel_view(request):
                 not_preferred.append(i.upper())
             else:
                 preferred.append(i.upper())
-        # print(preferred)
-        # print(not_preferred)
-        # print("OUT OF POST")
-        # print(request)
 
         return render(request, 'bizzbuzz/selectchannel.html', {'name': request.user.username, 'preferred': preferred, 'not_preferred': not_preferred})

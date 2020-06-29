@@ -27,17 +27,17 @@ $(function() {
     <span class="subHeading"><a href="/bizzbuzz/selectchannel">Manage Company Subscriptions</a></span>
     <span class="subHeading"><a href="/bizzbuzz/logout"> Logout</a></span>
 {#    <span class="subHeading"><a href=""> Settings</a></span>#}
-    <span class="subHeading" style="margin-left: 800px; color: white">Welcome {{ name }}!</span>
+    <span class="subHeading" style="margin-left: 800px; color: white; text-transform:capitalize; ">Welcome <b>{{ name }}</b>!</span>
 </div>
 <div class="container">
 <div class="sidebar">
-    <form method="post" action="">
-        <input type="search" placeholder="" class="searchbox"></form>
-        <a href="#" id="link1"> <img src="{% static "images/heart.png" %}" class="favorite"></a>
-    <a href="#" id="link2"> <img src="{% static "images/channel1.png" %}" class="channel"></a>
-    <a href="#" id="link3"> <img src="{% static "images/channel2.png" %}" class="channel"></a>
-    <a href="#" id="link4"> <img src="{% static "images/channel3.png" %}" class="channel"></a>
-    <a href="#" id="link5"> <img src="{% static "images/channel4.png" %}" class="channel" style="height: 50px;"></a>
+{#    <form method="post" action="">#}
+{#        <input type="search" placeholder="" class="searchbox"></form>#}
+{#    <a href="#" id="link1"> <img src="{% static "images/heart.png" %}" class="favorite"></a>#}
+    <a href="#" id="link2"> <img src="{% static "images/channel1.png" %}" class="channel" style="margin-right: 45px;"></a>
+    <a href="#" id="link3"> <img src="{% static "images/channel2.png" %}" class="channel" style="margin-right: 45px;"></a>
+    <a href="#" id="link4"> <img src="{% static "images/channel3.png" %}" class="channel" style="margin-right: 45px;"></a>
+    <a href="#" id="link5"> <img src="{% static "images/channel4.png" %}" class="channel" style="height: 50px;margin-right: 45px;"></a>
 
 </div>
     <div class="feed">
