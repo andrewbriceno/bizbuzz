@@ -87,6 +87,7 @@ def home_view(request):
     urls = []
     summaries = []
     indices = []
+    sources = []
     i = 1
 
     for pref in preferred:
@@ -103,8 +104,13 @@ def home_view(request):
                 summaries.append(getattr(n, 'summary'))
                 indices.append(i)
                 i+=1
-    #zip together titles, urls, summaries and send to home.html
-    return render(request, 'bizzbuzz/home.html', {'name': username, 'articles' : zip(titles, urls, summaries, indices)})
+                #update with extra sources once we implement them
+                if 'forbes.com' in getattr(n, 'url').lower():
+                    sources.append('FORBES')
+                else:
+                    sources.append('BI')
+    #zip together titles, urls, summaries, sources, and send to home.html
+    return render(request, 'bizzbuzz/home.html', {'name': username, 'articles' : zip(titles, urls, summaries, sources, indices)})
 
 def selectchannel_view(request):
     if not request.user.is_authenticated:

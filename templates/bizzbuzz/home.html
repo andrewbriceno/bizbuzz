@@ -46,18 +46,30 @@ $(function() {
     </div>
         <div class="timeheading">
             <h1>This Week</h1>
-                <h3 style="margin-left: 27px">Click on a Title to View Article.</h3>
+                <h3 style="margin-left: 27px">Click on a Card to View Article.</h3>
 
         </div>
         <div class="news">
             <a href="">
 
- {% for title, url, summary, index  in articles %}
-      <a target="_blank" rel="noopener noreferrer" href="{{ url }}">
+ {% for title, url, summary, source, index  in articles %}
+
+     <a target="_blank" rel="noopener noreferrer" href="{{ url }}">
         <div class="newsCard">
 <button class="number" disabled >{{ index }}</button>
-    <div class="textcontainer">
 
+
+    <div class="textcontainer">
+        {% if source == "FORBES" %}
+                 <a href="{{ url }}" >
+                     <img src="{% static "images/forbes-logo.png" %}" class="sourcelogo" style="height: 20px; margin-left:5px; margin-top:5px">
+                 </a>
+        {%  endif %}
+        {% if source == "BI" %}
+                 <a href="{{ url }}" >
+                     <img src="{% static "images/bi-logo.png" %}" class="sourcelogo" style="height: 20px; margin-left:5px; margin-top:5px">
+                 </a>
+        {%  endif %}
         <span class="author" style = "margin-right:20px; margin-bottom: 15px"> {{ title }} </span>
        <details class="summary" style = "margin-right:20px; color: #252b27;  border-style:solid; background-color: #6f9196; border-color: #6f9196">
            <summary> <u> Article Summary </u> </summary>{{ summary }} </details>
