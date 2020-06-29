@@ -15,4 +15,4 @@ Step 4: Write the following command python manage.py runserver
 
 Step 5: After the server is started go to http://127.0.0.1:8000/bizzbuzz/
 
-Step 6: You will see the following line Welcome to Bizzbuzz.
+Step 6: You will see the homepage of bizzbuzz.

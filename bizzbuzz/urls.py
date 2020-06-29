@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^selectchannel/$', views.selectchannel_view, name='selectchannel'),
     url(r'^home/$', views.home_view, name='home'),
     url(r'^logout/$', views.logout_view, name='logout')
+
 ]

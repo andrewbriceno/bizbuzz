@@ -32,7 +32,7 @@ $(function() {
 <div class="container">
 <div class="sidebar">
     <form method="post" action="">
-        <input type="search" placeholder="Filter Feeds" class="searchbox"></form>
+        <input type="search" placeholder="" class="searchbox"></form>
         <a href="#" id="link1"> <img src="{% static "images/heart.png" %}" class="favorite"></a>
     <a href="#" id="link2"> <img src="{% static "images/channel1.png" %}" class="channel"></a>
     <a href="#" id="link3"> <img src="{% static "images/channel2.png" %}" class="channel"></a>
@@ -42,24 +42,33 @@ $(function() {
 </div>
     <div class="feed">
     <div class="favoritebar">
-        <span class="subHeading"><a href="">Add to Favorites</a> </span>
-        <span class="subHeading"><a href="">Remove from Favorites</a> </span>
+
     </div>
         <div class="timeheading">
             <h1>This Week</h1>
+                <h3 style="margin-left: 27px">Click on a Title to View Article.</h3>
+
         </div>
         <div class="news">
             <a href="">
- {% for title, url, summary, index  in articles%}
+
+ {% for title, url, summary, index  in articles %}
+      <a target="_blank" rel="noopener noreferrer" href="{{ url }}">
         <div class="newsCard">
-<button class="number" disabled>{{ index }}</button>
+<button class="number" disabled >{{ index }}</button>
     <div class="textcontainer">
-        <span class="title">{{ title }}</span>
-        <span class="summary">{{ summary }}</span>
+
+        <span class="author" style = "margin-right:20px; margin-bottom: 15px"> {{ title }} </span>
+       <details class="summary" style = "margin-right:20px; color: #252b27;  border-style:solid; background-color: #6f9196; border-color: #6f9196">
+           <summary> <u> Article Summary </u> </summary>{{ summary }} </details>
+
         </div>
-     </div></a>
-        <a href="">
+     </div>
+     </a>
+
  {% endfor %}
+
+
 
         </a>
 </div>
