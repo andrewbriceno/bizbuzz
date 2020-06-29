@@ -26,20 +26,20 @@ $(function() {
 <span class="mainHeading"><a href="/bizzbuzz/home">Bizzbuzz</a> </span>
     <span class="subHeading"><a href="/bizzbuzz/selectchannel">Manage Company Subscriptions</a></span>
     <span class="subHeading"><a href="/bizzbuzz/login">Logout</a></span>
-    <span class="subHeading" style="margin-left: 800px; color: white">Welcome {{ name }}!</span>
+    <span class="subHeading" style="margin-left: 800px; color: white; text-transform:capitalize; ">Welcome <b>{{ name }}</b>!</span>
 {#    <span class="subHeading"><a href=""> Settings</a></span>#}
 </div>
 <div class="container" >
 
     <div class="feed" style="padding-left: 150px;padding-right: 68px;padding-bottom: 150px;">
 
-        <span class="loginHeading" style="margin-left: 370px;">Manage Company Subscriptions</span>
-        <span class="loginHeading" style="margin-left: 440px;font-size: 16px;padding-top: 0px;">You Are Currently Subscribed To: </span>
+        <span class="loginHeading" style="margin-left: 370px; margin-bottom: 7px">Manage Company Subscriptions</span>
+        <span class="loginHeading" style="margin-left: 440px; margin-bottom: 5px; font-size: 16px;padding-top: 0px;">You Are Currently Subscribed To: </span>
         {% for field in preferred %}
         <span class="loginHeading" style="margin-left: 510px;font-size: 16px;padding-top: 0px;">{{ field }} </span>
         {% endfor %}
 
-        <span class="loginHeading" style="margin-left: 420px;font-size: 16px;padding-top: 0px;">You Are Not Currently Subscribed To: </span>
+        <span class="loginHeading" style="margin-left: 420px; margin-top: 7px; margin-bottom: 5px; font-size: 16px;padding-top: 0px;">You Are Currently NOT Subscribed To: </span>
         {% for field in not_preferred %}
         <span class="loginHeading" style="margin-left: 510px;font-size: 16px;padding-top: 0px;">{{ field }} </span>
         {% endfor %}
@@ -63,7 +63,8 @@ $(function() {
             <span class="subHeading" style="padding-left: 85px;padding-top: 15px;font-size: 20px;">Facebook</span>
   <input type="checkbox" value="Facebook" name="facebook" style="margin-left: -85px;margin-top: 22px;">
             </div>
-        <input type="submit" name="" value="Next" class="logibtn"><br>
+        <input type="submit" name="" value="Save" class="logibtn"> <meta http-equiv="refresh" content="3" ><br>
+    <meta http-equiv="refresh" content="2.7" >
     </form>
 </div>
 </div>
