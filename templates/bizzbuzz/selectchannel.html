@@ -23,41 +23,49 @@ $(function() {
 });
 </script>
 <div class="navbar">
-<span class="mainHeading"><a href="">Bizzbuzz</a> </span>
-    <span class="subHeading"><a href="/bizzbuzz/searchchannel"> Add Channel</a></span>
-    <span class="subHeading"><a href="/bizzbuzz/login"> Logout</a></span>
-    <span class="subHeading"><a href=""> Settings</a></span>
-    <span class="subHeading" style="margin-left: 800px; color: white">Welcome Jose !</span>
+<span class="mainHeading"><a href="/bizzbuzz/home">Bizzbuzz</a> </span>
+    <span class="subHeading"><a href="/bizzbuzz/selectchannel">Manage Company Subscriptions</a></span>
+    <span class="subHeading"><a href="/bizzbuzz/login">Logout</a></span>
+    <span class="subHeading" style="margin-left: 800px; color: white">Welcome {{ name }}!</span>
+{#    <span class="subHeading"><a href=""> Settings</a></span>#}
 </div>
 <div class="container" >
 
     <div class="feed" style="padding-left: 150px;padding-right: 68px;padding-bottom: 150px;">
 
-        <span class="loginHeading" style="margin-left: 430px;">Add channel to your list</span>
+        <span class="loginHeading" style="margin-left: 370px;">Manage Company Subscriptions</span>
+        <span class="loginHeading" style="margin-left: 440px;font-size: 16px;padding-top: 0px;">You Are Currently Subscribed To: </span>
+        {% for field in preferred %}
+        <span class="loginHeading" style="margin-left: 510px;font-size: 16px;padding-top: 0px;">{{ field }} </span>
+        {% endfor %}
+
+        <span class="loginHeading" style="margin-left: 420px;font-size: 16px;padding-top: 0px;">You Are Not Currently Subscribed To: </span>
+        {% for field in not_preferred %}
+        <span class="loginHeading" style="margin-left: 510px;font-size: 16px;padding-top: 0px;">{{ field }} </span>
+        {% endfor %}
 
 <div class="loginContainer">
-    <form action="/bizzbuzz/home" >
+    <form action="" method="POST">
+        {% csrf_token %}
         <div class="row">
             <span class="subHeading" style="padding-left: 85px;padding-top: 15px;font-size: 20px;">Microsoft</span>
-  <input type="checkbox" value="Microsoft" style="margin-left: -85px;margin-top: 22px;">
+  <input type="checkbox" value="Microsoft" name="microsoft" style="margin-left: -85px;margin-top: 22px;">
             </div>
-<div class="row">
+        <div class="row">
             <span class="subHeading" style="padding-left: 85px;padding-top: 15px;font-size: 20px;">Apple</span>
-  <input type="checkbox" value="Apple" style="margin-left: -53px;margin-top: 22px;">
+  <input type="checkbox" value="Apple" name="apple" style="margin-left: -53px;margin-top: 22px;">
             </div>
         <div class="row">
             <span class="subHeading" style="padding-left: 85px;padding-top: 15px;font-size: 20px;">Google</span>
-  <input type="checkbox" value="Google" style="margin-left: -63px;margin-top: 22px;">
+  <input type="checkbox" value="Google" name="google" style="margin-left: -63px;margin-top: 22px;">
             </div>
         <div class="row">
             <span class="subHeading" style="padding-left: 85px;padding-top: 15px;font-size: 20px;">Facebook</span>
-  <input type="checkbox" value="Facebook" style="margin-left: -85px;margin-top: 22px;">
+  <input type="checkbox" value="Facebook" name="facebook" style="margin-left: -85px;margin-top: 22px;">
             </div>
         <input type="submit" name="" value="Next" class="logibtn"><br>
-
     </form>
 </div>
-
 </div>
     </div>
 

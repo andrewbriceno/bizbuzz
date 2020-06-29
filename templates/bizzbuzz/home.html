@@ -23,10 +23,10 @@ $(function() {
 });
 </script>
 <div class="navbar">
-<span class="mainHeading"><a href="">Bizzbuzz</a> </span>
-    <span class="subHeading"><a href="/bizzbuzz/searchchannel"> Add Channel</a></span>
+<span class="mainHeading"><a href="/bizzbuzz/home">Bizzbuzz</a> </span>
+    <span class="subHeading"><a href="/bizzbuzz/selectchannel">Manage Company Subscriptions</a></span>
     <span class="subHeading"><a href="/bizzbuzz/logout"> Logout</a></span>
-    <span class="subHeading"><a href=""> Settings</a></span>
+{#    <span class="subHeading"><a href=""> Settings</a></span>#}
     <span class="subHeading" style="margin-left: 800px; color: white">Welcome {{ name }}!</span>
 </div>
 <div class="container">
@@ -42,85 +42,38 @@ $(function() {
 </div>
     <div class="feed">
     <div class="favoritebar">
-        <span class="subHeading"><a href="">Add to Favourites</a> </span>
-        <span class="subHeading"><a href="">Remove from Favourites</a> </span>
+        <span class="subHeading"><a href="">Add to Favorites</a> </span>
+        <span class="subHeading"><a href="">Remove from Favorites</a> </span>
     </div>
         <div class="timeheading">
-            <h1>Today</h1>
+            <h1>This Week</h1>
+                <h3 style="margin-left: 27px">Click on a Title to View Article.</h3>
+
         </div>
         <div class="news">
             <a href="">
-<div class="newsCard">
-<button class="number" disabled>1</button>
-    <div class="textcontainer">
-        <span class="feedtext">ProtoPie 5.0–Introducing interaction recipes, more than a handoff</span>
-        <span class="author">By Fredo Tan</span>
-        </div>
-</div></a>
-            <a href="">
-<div class="newsCard">
-<button class="number" disabled>2</button>
-    <div class="textcontainer">
-        <span class="feedtext">ProtoPie 5.0–Introducing interaction recipes, more than a handoff</span>
-        <span class="author">By Fredo Tan</span>
-        </div>
-</div></a>
-            <a href="">
-<div class="newsCard">
-<button class="number" disabled>3</button>
-    <div class="textcontainer">
-        <span class="feedtext">ProtoPie 5.0–Introducing interaction recipes, more than a handoff</span>
-        <span class="author">By Fredo Tan</span>
-        </div>
-</div></a>
-            <a href="">
-<div class="newsCard">
-<button class="number" disabled>4</button>
-    <div class="textcontainer">
-        <span class="feedtext">ProtoPie 5.0–Introducing interaction recipes, more than a handoff</span>
-        <span class="author">By Fredo Tan</span>
-        </div>
-</div></a>
-        </div>
-        <div class="timeheading">
-            <h1>This Week</h1>
-        </div>
-              <div class="news">
-            <a href="">
-<div class="newsCard">
-<button class="number" disabled>1</button>
-    <div class="textcontainer">
-        <span class="feedtext">ProtoPie 5.0–Introducing interaction recipes, more than a handoff</span>
-        <span class="author">By Fredo Tan</span>
-        </div>
-</div></a>
-            <a href="">
-<div class="newsCard">
-<button class="number" disabled>2</button>
-    <div class="textcontainer">
-        <span class="feedtext">ProtoPie 5.0–Introducing interaction recipes, more than a handoff</span>
-        <span class="author">By Fredo Tan</span>
-        </div>
-</div></a>
-            <a href="">
-<div class="newsCard">
-<button class="number" disabled>3</button>
-    <div class="textcontainer">
-        <span class="feedtext">ProtoPie 5.0–Introducing interaction recipes, more than a handoff</span>
-        <span class="author">By Fredo Tan</span>
-        </div>
-</div></a>
-            <a href="">
-<div class="newsCard">
-<button class="number" disabled>4</button>
-    <div class="textcontainer">
-        <span class="feedtext">ProtoPie 5.0–Introducing interaction recipes, more than a handoff</span>
-        <span class="author">By Fredo Tan</span>
-        </div>
-</div></a>
-        </div>
-</div>
-    </div>
 
+ {% for title, url, summary, index  in articles %}
+      <a target="_blank" rel="noopener noreferrer" href="{{ url }}">
+        <div class="newsCard">
+<button class="number" disabled >{{ index }}</button>
+    <div class="textcontainer">
+
+        <span class="author" style = "margin-right:20px; margin-bottom: 15px"> {{ title }} </span>
+       <details class="summary" style = "margin-right:20px; color: #252b27;  border-style:solid; background-color: #6f9196; border-color: #6f9196">
+           <summary> <u> Article Summary </u> </summary>{{ summary }} </details>
+
+        </div>
+     </div>
+     </a>
+
+ {% endfor %}
+
+
+
+        </a>
+</div>
+</div>
+</div>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="db" uuid="b08c8097-e793-478d-8364-c1dff61e1ca3">
+    <data-source source="LOCAL" name="db" uuid="2e1f0285-bd24-4af1-a956-953cdf3e3533">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
@@ -15,12 +15,18 @@
         </library>
       </libraries>
     </data-source>
-    <data-source source="LOCAL" name="db [2]" uuid="f93bc7f2-79d7-4f35-a9ec-fe4f84cdc3e1">
+    <data-source source="LOCAL" name="db [2]" uuid="72621fd3-fbf7-4d3c-81ff-13e0f55351a8">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\jeffr\Desktop\bizzbuzz\db.sqlite3</jdbc-url>
+      <jdbc-url>jdbc:sqlite:C:\Users\andre\PycharmProjects\bizbuzzlocal\db.sqlite3</jdbc-url>
       <libraries>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.31.1/license.txt</url>
+        </library>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.31.1/sqlite-jdbc-3.31.1.jar</url>
+        </library>
         <library>
           <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.31.1/license.txt</url>
         </library>
