@@ -57,7 +57,6 @@ class Command(BaseCommand):
             req = requests.get(scrape)
             soup = BeautifulSoup(req.content, 'lxml')
 
-            #Finds all of the titles, urls, and summaries of each article (top 3 of each URL)
             for div in soup.find_all("div", class_="top-vertical-trio-item"):
                 a_tag = div.find("a", class_="tout-title-link")
                 title = a_tag.text
@@ -69,10 +68,10 @@ class Command(BaseCommand):
                         urls.append("https://businessinsider.com" + a_tag.attrs["href"])
                     else:
                         urls.append(a_tag.attrs["href"])
-                    summary_tag = div.find("div", class_="tout-copy three-column")
+                    summary_tag = div.find("div", class_="tout-copy three-column body-regular")
                     summary.append(summary_tag.text.strip())
 
-        for x, y, z in zip(titles,urls, summary):
+        for x, y, z in zip(titles, urls, summary):
             article = News(title=x, url=y, summary=z)
             article.save()
 

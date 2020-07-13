@@ -9,6 +9,8 @@ class News(models.Model):
     url = models.TextField('Article URL')
     expiration_date = models.DateTimeField(auto_now_add=True) #compare against this for deleting old rows, +7 from current date
     summary = models.TextField('Article Summary')
+    company = models.TextField('Article Company')
+    date_added = models.DateTimeField(auto_now_add=True)
 
 # make table for the preferences of each user, default means they want all news
 # initially set during sign up, toggled with icons on side
@@ -19,3 +21,12 @@ class Preferences(models.Model):
     google = models.BooleanField(default=True)
     facebook = models.BooleanField(default=True)
     microsoft = models.BooleanField(default=True)
+    amazon = models.BooleanField(default=True)
+    samsung = models.BooleanField(default=True)
+    IBM = models.BooleanField(default=True)
+    twitter = models.BooleanField(default=True)
+    netflix = models.BooleanField(default=True)
+    oracle = models.BooleanField(default=True)
+    SAP = models.BooleanField(default=True)
+    salesforce = models.BooleanField(default=True)
+    tesla = models.BooleanField(default=True)

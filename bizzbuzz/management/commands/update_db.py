@@ -74,7 +74,7 @@ class Command(BaseCommand):
                         urls.append("https://businessinsider.com" + a_tag.attrs["href"])
                     else:
                         urls.append(a_tag.attrs["href"])
-                    summary_tag = div.find("div", class_="tout-copy three-column")
+                    summary_tag = div.find("div", class_="tout-copy three-column body-regular")
                     summary.append(summary_tag.text.strip())
 
         for x, y, z in zip(titles, urls, summary):
