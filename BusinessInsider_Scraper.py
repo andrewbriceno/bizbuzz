@@ -15,13 +15,15 @@ def main():
 
     urls = set()
     titles = set()
-    summary = set()
+    summaries = set()
 
     for scrape in BIurls:
         req = requests.get(scrape)
         soup = BeautifulSoup(req.content, 'lxml')
 
         #Finds all of the titles, urls, and summaries of each article
+
+        #first 3 articles of each url
         for div in soup.find_all("div", class_="top-vertical-trio-item"):
             a_tag = div.find("a", class_="tout-title-link")
             summary_tag = div.find("div", class_="tout-copy three-column")
@@ -30,8 +32,8 @@ def main():
             else:
                 urls.add(a_tag.attrs["href"])
             titles.add(a_tag.text)
-            summary.add(summary_tag.text.strip())
-
+            summaries.add(summary_tag.text.strip())
+        #rest of the articles on the page
         for div in soup.find_all("div", class_="tout-text-wrapper default-tout"):
             a_tag = div.find("a")
             summary_tag = div.find("div")
@@ -40,13 +42,13 @@ def main():
             else:
                 urls.add(a_tag.attrs["href"])
             titles.add(a_tag.text)
-            summary.add(summary_tag.text.strip())
+            summaries.add(summary_tag.text.strip())
 
-    n = 1
-    for x, y, z in zip(titles, urls, summary):
-        print(str(n) + ". " + x + "\n" + y, sep="\n") #prints each article's title, url, and summary/comment
-        print("\n" + z + "\n")
-        n += 1
+    # n = 1
+    # for x, y, z in zip(titles, urls, summaries):
+    #     print(str(n) + ". " + x + "\n" + y, sep="\n") #prints each article's title, url, and summary/comment
+    #     print("\n" + z + "\n")
+    #     n += 1
 
 if __name__ == '__main__':
     main()
