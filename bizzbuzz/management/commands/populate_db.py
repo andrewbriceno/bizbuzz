@@ -12,9 +12,12 @@ class Command(BaseCommand):
         req = requests.get('https://www.forbes.com/business')
         soup = BeautifulSoup(req.content, features='html.parser')
 
-        urls = []
-        titles = []
-        summary = []
+        # replaces punctuation with space so companies can be parsed
+        punctuations = '''!()-[]{};:\'\"\\”“’’‘‘,<>./?@#$%^&*_~'''
+        translator = str.maketrans(punctuations, ' ' * len(punctuations))
+
+        company_master_list = ['AMAZON', 'SAMSUNG', 'IBM', 'TWITTER', 'NETFLIX', 'ORACLE', 'SAP', 'SALESFORCE', 'TESLA',
+                               'MICROSOFT', 'APPLE', 'GOOGLE', 'FACEBOOK']
 
         # finds each article
         articles = soup.findAll('h2')
@@ -27,16 +30,13 @@ class Command(BaseCommand):
                 first_para = soup.find('div', class_="article-body-container")
                 if first_para is None:
                     continue
-                first_line = first_para.find('p').text
-                titles.append(soup.find('title').text)
-                urls.append(url)
-                summary.append(first_line)
-
-        title_url_map = zip(titles, urls, summary)
-        for x, y, z in title_url_map:
-            article = News(title=x, url=y, summary=z)
-            article.save()
-
+                sum = first_para.find('p').text
+                title = soup.find('title').text
+                new_title = title.translate(translator)
+                company_check = set(company_master_list).intersection(new_title.upper().split(' '))
+                if company_check:
+                    article = News(title=title, url=url, summary=sum, company=company_check)
+                    article.save()
 
     def _BI(self):
         # In order: Tech, Finance, Strategy, Retail, Executive, Prime, Intelligence, Politics, Transportation, Markets,
