@@ -101,6 +101,9 @@ def home_view(request):
                 titles.append(getattr(n, 'title'))
                 urls.append(getattr(n, 'url'))
                 summaries.append(getattr(n, 'summary'))
+                # comp_test = str(getattr(n, 'company'))    #TODO: this is how you test if the company column contains a certain company
+                # if "GOOGLE" in comp_test:
+                #     # do logic
                 indices.append(i)
                 i+=1
                 #update with extra sources once we implement them
@@ -159,9 +162,9 @@ def selectchannel_view(request):
                 changePref.save()
         i = 0
         for i in companies:
-            print(i)
+            # print(i)
             value = getattr(preference, i)
-            print(value)
+            # print(value)
             if value is False:
                 not_preferred.append(i.upper())
             else:

@@ -12,9 +12,12 @@ class Command(BaseCommand):
         req = requests.get('https://www.forbes.com/business')
         soup = BeautifulSoup(req.content, features='html.parser')
 
-        urls = []
-        titles = []
-        summary = []
+        # replaces punctuation with space so companies can be parsed
+        punctuations = '''!()-[]{};:\'\"\\”“’’‘‘,<>./?@#$%^&*_~'''
+        translator = str.maketrans(punctuations, ' ' * len(punctuations))
+
+        company_master_list = ['AMAZON', 'SAMSUNG', 'IBM', 'TWITTER', 'NETFLIX', 'ORACLE', 'SAP', 'SALESFORCE', 'TESLA',
+                               'MICROSOFT', 'APPLE', 'GOOGLE', 'FACEBOOK']
 
         # finds each article
         articles = soup.findAll('h2')
@@ -27,16 +30,13 @@ class Command(BaseCommand):
                 first_para = soup.find('div', class_="article-body-container")
                 if first_para is None:
                     continue
-                first_line = first_para.find('p').text
-                titles.append(soup.find('title').text)
-                urls.append(url)
-                summary.append(first_line)
-
-        title_url_map = zip(titles, urls, summary)
-        for x, y, z in title_url_map:
-            article = News(title=x, url=y, summary=z)
-            article.save()
-
+                sum = first_para.find('p').text
+                title = soup.find('title').text
+                new_title = title.translate(translator)
+                company_check = set(company_master_list).intersection(new_title.upper().split(' '))
+                if company_check:
+                    article = News(title=title, url=url, summary=sum, company=company_check)
+                    article.save()
 
     def _BI(self):
         # In order: Tech, Finance, Strategy, Retail, Executive, Prime, Intelligence, Politics, Transportation, Markets,
@@ -49,32 +49,34 @@ class Command(BaseCommand):
                   "https://www.businessinsider.com/science", "https://www.businessinsider.com/news",
                   "https://www.businessinsider.com/media", "https://www.businessinsider.com/enterprise"]
 
+        punctuations = '''!()-[]{};:\'\"\\”“’’‘‘,<>./?@#$%^&*_~'''
+        translator = str.maketrans(punctuations, ' ' * len(punctuations))
+
+        company_master_list = ['AMAZON', 'SAMSUNG', 'IBM', 'TWITTER', 'NETFLIX', 'ORACLE', 'SAP', 'SALESFORCE', 'TESLA',
+                               'MICROSOFT', 'APPLE', 'GOOGLE', 'FACEBOOK']
+
         urls = []
-        titles = []
-        summary = []
 
         for scrape in BIurls:
             req = requests.get(scrape)
             soup = BeautifulSoup(req.content, 'lxml')
 
-            #Finds all of the titles, urls, and summaries of each article (top 3 of each URL)
             for div in soup.find_all("div", class_="top-vertical-trio-item"):
                 a_tag = div.find("a", class_="tout-title-link")
                 title = a_tag.text
-                if title in titles:     #don't add articles that are already going to be added to the DB
-                    continue
+                if a_tag.attrs["href"][0] == "/":
+                    url = "https://businessinsider.com" + a_tag.attrs["href"]
                 else:
-                    titles.append(title)
-                    if a_tag.attrs["href"][0] == "/":
-                        urls.append("https://businessinsider.com" + a_tag.attrs["href"])
-                    else:
-                        urls.append(a_tag.attrs["href"])
-                    summary_tag = div.find("div", class_="tout-copy three-column")
-                    summary.append(summary_tag.text.strip())
-
-        for x, y, z in zip(titles,urls, summary):
-            article = News(title=x, url=y, summary=z)
-            article.save()
+                    url = a_tag.attrs["href"]
+                if url in urls:
+                    continue
+                sum = div.find("div", class_="tout-copy three-column body-regular").text.strip()
+                new_title = title.translate(translator)
+                company_check = set(company_master_list).intersection(new_title.upper().split(' '))
+                if company_check:
+                    urls.append(url)
+                    article = News(title=title, url=url, summary=sum, company=company_check)
+                    article.save()
 
     def handle(self, *args, **options):
         self._delete_everything()
