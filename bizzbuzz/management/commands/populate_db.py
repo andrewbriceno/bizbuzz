@@ -16,7 +16,8 @@ class Command(BaseCommand):
         punctuations = '''!()-[]{};:\'\"\\”“’’‘‘,<>./?@#$%^&*_~'''
         translator = str.maketrans(punctuations, ' ' * len(punctuations))
 
-        company_master_list = ['AMAZON', 'SAMSUNG', 'IBM', 'TWITTER', 'NETFLIX', 'ORACLE', 'SAP', 'SALESFORCE', 'TESLA',
+        company_master_list = ['AMAZON', 'SAMSUNG', 'IBM', 'TWITTER', 'NETFLIX',
+                               'ORACLE', 'SAP', 'SALESFORCE', 'TESLA', 'SPACEX',
                                'MICROSOFT', 'APPLE', 'GOOGLE', 'FACEBOOK']
 
         # finds each article
@@ -52,7 +53,8 @@ class Command(BaseCommand):
         punctuations = '''!()-[]{};:\'\"\\”“’’‘‘,<>./?@#$%^&*_~'''
         translator = str.maketrans(punctuations, ' ' * len(punctuations))
 
-        company_master_list = ['AMAZON', 'SAMSUNG', 'IBM', 'TWITTER', 'NETFLIX', 'ORACLE', 'SAP', 'SALESFORCE', 'TESLA',
+        company_master_list = ['AMAZON', 'SAMSUNG', 'IBM', 'TWITTER', 'NETFLIX',
+                               'ORACLE', 'SAP', 'SALESFORCE', 'TESLA', 'SPACEX',
                                'MICROSOFT', 'APPLE', 'GOOGLE', 'FACEBOOK']
 
         urls = []
@@ -78,7 +80,45 @@ class Command(BaseCommand):
                     article = News(title=title, url=url, summary=sum, company=company_check)
                     article.save()
 
+    def _NYT(self):
+        NYTurls = ["https://www.nytimes.com/section/technology", "https://www.nytimes.com/section/business",
+                   "https://www.nytimes.com/section/business/economy",
+                   "https://www.nytimes.com/section/business/energy-environment",
+                   "https://www.nytimes.com/section/science", "https://www.nytimes.com/section/science/space"]
+
+        # replaces punctuation with space so companies can be parsed
+        punctuations = '''!()-[]{};:\'\"\\”“’’‘‘,<>./?@#$%^&*_~'''
+        translator = str.maketrans(punctuations, ' ' * len(punctuations))
+
+        company_master_list = ['AMAZON', 'SAMSUNG', 'IBM', 'TWITTER', 'NETFLIX',
+                               'ORACLE', 'SAP', 'SALESFORCE', 'TESLA', 'SPACEX',
+                               'MICROSOFT', 'APPLE', 'GOOGLE', 'FACEBOOK']
+
+        urls = []
+
+        for scrape in NYTurls:
+            req = requests.get(scrape)
+            soup = BeautifulSoup(req.content, 'lxml')
+
+            for div in soup.find_all("li", class_="css-ye6x8s"):
+                a_tag = div.find("a")
+                title = a_tag.find("h2").text
+                if a_tag.attrs["href"][0] == "/":
+                    url = "https://nytimes.com" + a_tag.attrs["href"]
+                else:
+                    url = a_tag.attrs["href"]
+                if url in urls:
+                    continue
+                sum = a_tag.find("p").text
+                new_title = title.translate(translator)
+                company_check = set(company_master_list).intersection(new_title.upper().split(' '))
+                if company_check:
+                    urls.append(url)
+                    article = News(title=title, url=url, summary=sum, company=company_check)
+                    article.save()
+
     def handle(self, *args, **options):
         self._delete_everything()
         self._forbes()
         self._BI()
+        self._NYT()
