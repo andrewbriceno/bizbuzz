@@ -7,10 +7,9 @@ from django.db import models
 class News(models.Model):
     title = models.TextField('Article Title')
     url = models.TextField('Article URL')
-    expiration_date = models.DateTimeField(auto_now_add=True) #compare against this for deleting old rows, +7 from current date
+    expiration_date = models.DateTimeField(auto_now_add=True)
     summary = models.TextField('Article Summary')
     company = models.TextField('Article Company')
-    date_added = models.DateTimeField(auto_now_add=True)
 
 # make table for the preferences of each user, default means they want all news
 # initially set during sign up, toggled with icons on side
