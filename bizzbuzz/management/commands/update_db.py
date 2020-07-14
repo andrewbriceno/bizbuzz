@@ -22,6 +22,8 @@ class Command(BaseCommand):
         company_master_list = ['AMAZON', 'SAMSUNG', 'IBM', 'TWITTER', 'NETFLIX', 'ORACLE', 'SAP', 'SALESFORCE', 'TESLA',
                                'MICROSOFT', 'APPLE', 'GOOGLE', 'FACEBOOK']
 
+        #test for push
+
         # finds each article
         articles = soup.findAll('h2')
 
