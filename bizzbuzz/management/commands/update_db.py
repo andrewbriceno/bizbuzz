@@ -20,7 +20,8 @@ class Command(BaseCommand):
         translator = str.maketrans(punctuations, ' ' * len(punctuations))
 
         # master list of companies we track
-        company_master_list = ['AMAZON', 'SAMSUNG', 'IBM', 'TWITTER', 'NETFLIX', 'ORACLE', 'SAP', 'SALESFORCE', 'TESLA',
+        company_master_list = ['AMAZON', 'SAMSUNG', 'IBM', 'TWITTER', 'NETFLIX',
+                               'ORACLE', 'SAP', 'SALESFORCE', 'TESLA',
                                'MICROSOFT', 'APPLE', 'GOOGLE', 'FACEBOOK']
 
         # finds each article
