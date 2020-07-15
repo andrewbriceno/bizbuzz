@@ -29,6 +29,12 @@ $(function() {
 {#    <span class="subHeading"><a href=""> Settings</a></span>#}
     <span class="subHeading" style="margin-left: 800px; color: white; text-transform:capitalize; ">Welcome <b>{{ name }}</b>!</span>
 </div>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" name="run_script">Refresh News</button>
+</form>
+
 <div class="container">
 <div class="sidebar">
 {#    <form method="post" action="">#}

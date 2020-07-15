@@ -8,7 +8,8 @@ from bizzbuzz.models import Preferences
 from bizzbuzz.models import News
 from bizzbuzz.forms import PrefForm
 import time
-# from .models import Register
+from django.core import management
+from bizzbuzz.management.commands import update_db
 
 
 def index_view(request):
@@ -71,48 +72,55 @@ def signup_view(request):
 def home_view(request):
     if not request.user.is_authenticated:
         return redirect('login')
-    #gather user's preferences to use in search later
-    username = request.user.username
-    preference = Preferences.objects.get(username=username)
-    companies = ['apple', 'google', 'facebook', 'microsoft']
-    if request.method == 'GET':
-        preferred = []
-        for i in companies: #gets the current values of each company, puts in appropriate list, and passes lists to HTML
-            value = getattr(preference, i)
-            if value is True:
-                preferred.append(i.upper())
+    if request.method == 'POST' and 'run_script' in request.POST:
+        # calls update_db.py in bizzbuzz/management/commands
+        management.call_command('update_db')
 
-    titles= []
-    urls = []
-    summaries = []
-    indices = []
-    sources = []
-    i = 1
+        # go back to home page with new articles showing
+        return redirect('home')
+    else:
+        # gather user's preferences to use in search later
+        username = request.user.username
+        preference = Preferences.objects.get(username=username)
+        companies = ['apple', 'google', 'facebook', 'microsoft']
+        if request.method == 'GET':
+            preferred = []
+            for i in companies: #gets the current values of each company, puts in appropriate list, and passes lists to HTML
+                value = getattr(preference, i)
+                if value is True:
+                    preferred.append(i.upper())
 
-    for pref in preferred:
-        #filter articles containing relevant company name
-        news = News.objects.filter(title__icontains=pref)
-        #hard coded 'applebee's' exception, can make more generic if other exceptions arise
-        if pref.lower() == 'apple':
-            news=news.exclude(title__icontains="applebee's")
-        for n in news:
-            #check for duplicate urls
-            if getattr(n, 'url') not in urls:
-                titles.append(getattr(n, 'title'))
-                urls.append(getattr(n, 'url'))
-                summaries.append(getattr(n, 'summary'))
-                # comp_test = str(getattr(n, 'company'))    #TODO: this is how you test if the company column contains a certain company
-                # if "GOOGLE" in comp_test:
-                #     # do logic
-                indices.append(i)
-                i+=1
-                #update with extra sources once we implement them
-                if 'forbes.com' in getattr(n, 'url').lower():
-                    sources.append('FORBES')
-                else:
-                    sources.append('BI')
-    #zip together titles, urls, summaries, sources, and send to home.html
-    return render(request, 'bizzbuzz/home.html', {'name': username, 'articles' : zip(titles, urls, summaries, sources, indices)})
+        titles= []
+        urls = []
+        summaries = []
+        indices = []
+        sources = []
+        i = 1
+
+        for pref in preferred:
+            #filter articles containing relevant company name
+            news = News.objects.filter(title__icontains=pref)
+            #hard coded 'applebee's' exception, can make more generic if other exceptions arise
+            if pref.lower() == 'apple':
+                news=news.exclude(title__icontains="applebee's")
+            for n in news:
+                #check for duplicate urls
+                if getattr(n, 'url') not in urls:
+                    titles.append(getattr(n, 'title'))
+                    urls.append(getattr(n, 'url'))
+                    summaries.append(getattr(n, 'summary'))
+                    # comp_test = str(getattr(n, 'company'))    #TODO: this is how you test if the company column contains a certain company
+                    # if "GOOGLE" in comp_test:
+                    #     # do logic
+                    indices.append(i)
+                    i+=1
+                    #update with extra sources once we implement them
+                    if 'forbes.com' in getattr(n, 'url').lower():
+                        sources.append('FORBES')
+                    else:
+                        sources.append('BI')
+        #zip together titles, urls, summaries, sources, and send to home.html
+        return render(request, 'bizzbuzz/home.html', {'name': username, 'articles' : zip(titles, urls, summaries, sources, indices)})
 
 def selectchannel_view(request):
     if not request.user.is_authenticated:
@@ -171,3 +179,6 @@ def selectchannel_view(request):
                 preferred.append(i.upper())
 
         return render(request, 'bizzbuzz/selectchannel.html', {'name': request.user.username, 'preferred': preferred, 'not_preferred': not_preferred})
+
+    def update_db(request):
+        print("HW")

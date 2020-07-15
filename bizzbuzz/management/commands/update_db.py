@@ -6,11 +6,11 @@ from bizzbuzz.models import News
 import requests
 
 class Command(BaseCommand):
-    def _purge_db(self):
+    def purge_db(self):
         a_week_ago = datetime.now() - timedelta(days=7)
         News.objects.filter(expiration_date__contains=a_week_ago).delete()
 
-    def _add_forbes_articles(self):
+    def add_forbes_articles(self):
         # add rows for articles that are not already in the database
         req = requests.get('https://www.forbes.com/business')
         soup = BeautifulSoup(req.content, features='html.parser')
@@ -47,7 +47,7 @@ class Command(BaseCommand):
                         article = News(title=title, url=url, summary=sum, company=company_check)
                         article.save()
 
-    def _add_BI_articles(self):
+    def add_BI_articles(self):
         BIurls = ["https://www.businessinsider.com/sai", "https://www.businessinsider.com/clusterstock",
                   "https://www.businessinsider.com/warroom", "https://www.businessinsider.com/retail",
                   "https://www.businessinsider.com/thelife", "https://www.businessinsider.com/prime",
@@ -85,7 +85,7 @@ class Command(BaseCommand):
                         article = News(title=title, url=url, summary=sum, company=company_check)
                         article.save()
 
-    def _add_NYT_articles(self):
+    def add_NYT_articles(self):
         NYTurls = ["https://www.nytimes.com/section/technology", "https://www.nytimes.com/section/business",
                    "https://www.nytimes.com/section/business/economy",
                    "https://www.nytimes.com/section/business/energy-environment",
@@ -124,7 +124,7 @@ class Command(BaseCommand):
                         article = News(title=title, url=url, summary=sum, company=company_check)
                         article.save()
 
-    def _add_TT_articles(self):
+    def add_TT_articles(self):
         # Tech, Science, Business, Features
         TTurls = ["https://www.techtimes.com/personaltech", "https://www.techtimes.com/science",
                   "https://www.techtimes.com/biztech", "https://www.techtimes.com/feature"]
@@ -157,8 +157,8 @@ class Command(BaseCommand):
                         article.save()
 
     def handle(self, *args, **options):
-        self._purge_db()
-        self._add_forbes_articles()
-        self._add_BI_articles()
-        self._add_NYT_articles()
-        self._add_TT_articles()
+        self.purge_db()
+        self.add_forbes_articles()
+        self.add_BI_articles()
+        self.add_NYT_articles()
+        self.add_TT_articles()
