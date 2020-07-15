@@ -75,6 +75,8 @@ def home_view(request):
     username = request.user.username
     preference = Preferences.objects.get(username=username)
     companies = ['apple', 'google', 'facebook', 'microsoft']
+    # , 'amazon', 'samsung', 'ibm', 'twitter', 'netflix',
+    # 'oracle', 'sap', 'salesforce', 'tesla', 'spacex'
     if request.method == 'GET':
         preferred = []
         for i in companies: #gets the current values of each company, puts in appropriate list, and passes lists to HTML
@@ -120,6 +122,10 @@ def selectchannel_view(request):
     username = request.user.username
     preference = Preferences.objects.get(username=username) #.values_list('apple', 'microsoft', 'google', 'facebook')
     companies = ['apple', 'google', 'facebook', 'microsoft']
+    # companies = ['apple', 'google', 'facebook', 'microsoft', 'amazon', 'samsung', 'ibm', 'twitter', 'netflix',
+    #              'oracle', 'sap', 'salesforce', 'tesla', 'spacex']
+
+
     if request.method == 'GET':
         preferred = []
         not_preferred = []
@@ -160,6 +166,57 @@ def selectchannel_view(request):
                 new = not current
                 changePref.google = new
                 changePref.save()
+            # if "amazon" in request.POST:
+            #     current = changePref.amazon
+            #     new = not current
+            #     changePref.amazon = new
+            #     changePref.save()
+            # if "samsung" in request.POST:
+            #     current = changePref.samsung
+            #     new = not current
+            #     changePref.samsung = new
+            #     changePref.save()
+            # if "ibm" in request.POST:
+            #     current = changePref.ibm
+            #     new = not current
+            #     changePref.ibm = new
+            #     changePref.save()
+            # if "twitter" in request.POST:
+            #     current = changePref.twitter
+            #     new = not current
+            #     changePref.twitter = new
+            #     changePref.save()
+            # if "netflix" in request.POST:
+            #     current = changePref.netflix
+            #     new = not current
+            #     changePref.netflix = new
+            #     changePref.save()
+            # if "oracle" in request.POST:
+            #     current = changePref.oracle
+            #     new = not current
+            #     changePref.oracle = new
+            #     changePref.save()
+            # if "sap" in request.POST:
+            #     current = changePref.sap
+            #     new = not current
+            #     changePref.sap = new
+            #     changePref.save()
+            # if "salesforce" in request.POST:
+            #     current = changePref.salesforce
+            #     new = not current
+            #     changePref.salesforce = new
+            #     changePref.save()
+            # if "tesla" in request.POST:
+            #     current = changePref.tesla
+            #     new = not current
+            #     changePref.tesla = new
+            #     changePref.save()
+            # if "spacex" in request.POST:
+            #     current = changePref.spacex
+            #     new = not current
+            #     changePref.spacex = new
+            #     changePref.save()
+
         i = 0
         for i in companies:
             # print(i)
