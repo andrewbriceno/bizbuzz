@@ -63,14 +63,15 @@ def home_view(request):
     if request.method == 'POST' and 'run_script' in request.POST:
         # calls update_db.py in bizzbuzz/management/commands to update the database
         management.call_command('update_db')
-
         # go back to home page with new articles showing
         return redirect('home')
+
     else:
         # gather user's preferences to use in search later
         username = request.user.username
         preference = Preferences.objects.get(username=username)
-        companies = ['apple', 'google', 'facebook', 'microsoft']
+        companies = ['apple', 'google', 'facebook', 'microsoft', 'amazon', 'samsung', 'ibm', 'twitter', 'netflix',
+                     'oracle', 'sap', 'salesforce', 'tesla', 'spacex']
         if request.method == 'GET':
             preferred = []
             for i in companies: #gets the current values of each company, puts in appropriate list, and passes lists to HTML
@@ -105,6 +106,10 @@ def home_view(request):
                     #update with extra sources once we implement them
                     if 'forbes.com' in getattr(n, 'url').lower():
                         sources.append('FORBES')
+                    elif 'nytimes.com' in getattr(n, 'url').lower():
+                        sources.append('NYTIMES')
+                    elif 'techtimes.com' in getattr(n, 'url').lower():
+                        sources.append('TECH_TIMES')
                     else:
                         sources.append('BI')
         #zip together titles, urls, summaries, sources, and send to home.html
@@ -115,7 +120,8 @@ def selectchannel_view(request):
         return redirect('login')
     username = request.user.username
     preference = Preferences.objects.get(username=username) #.values_list('apple', 'microsoft', 'google', 'facebook')
-    companies = ['apple', 'google', 'facebook', 'microsoft']
+    companies = ['apple', 'google', 'facebook', 'microsoft', 'amazon', 'samsung', 'ibm', 'twitter', 'netflix',
+                 'oracle', 'sap', 'salesforce', 'tesla', 'spacex']
     if request.method == 'GET':
         preferred = []
         not_preferred = []
@@ -126,11 +132,9 @@ def selectchannel_view(request):
                 not_preferred.append(i.upper())
             else:
                 preferred.append(i.upper())
-        # print(preferred)
-        # print(not_preferred)
+
         return render(request,'bizzbuzz/selectchannel.html', {'name': request.user.username, 'preferred': preferred, 'not_preferred': not_preferred})
     elif request.method == 'POST':
-        # print("IN POST")
         MyPrefForm = PrefForm(request.POST)
         changePref = Preferences.objects.get(username=username)
         preferred = []
@@ -156,11 +160,59 @@ def selectchannel_view(request):
                 new = not current
                 changePref.google = new
                 changePref.save()
+            if "amazon" in request.POST:
+                current = changePref.amazon
+                new = not current
+                changePref.amazon = new
+                changePref.save()
+            if "samsung" in request.POST:
+                current = changePref.samsung
+                new = not current
+                changePref.samsung = new
+                changePref.save()
+            if "ibm" in request.POST:
+                current = changePref.ibm
+                new = not current
+                changePref.ibm = new
+                changePref.save()
+            if "twitter" in request.POST:
+                current = changePref.twitter
+                new = not current
+                changePref.twitter = new
+                changePref.save()
+            if "netflix" in request.POST:
+                current = changePref.netflix
+                new = not current
+                changePref.netflix = new
+                changePref.save()
+            if "oracle" in request.POST:
+                current = changePref.oracle
+                new = not current
+                changePref.oracle = new
+                changePref.save()
+            if "sap" in request.POST:
+                current = changePref.sap
+                new = not current
+                changePref.sap = new
+                changePref.save()
+            if "salesforce" in request.POST:
+                current = changePref.salesforce
+                new = not current
+                changePref.salesforce = new
+                changePref.save()
+            if "tesla" in request.POST:
+                current = changePref.tesla
+                new = not current
+                changePref.tesla = new
+                changePref.save()
+            if "spacex" in request.POST:
+                current = changePref.spacex
+                new = not current
+                changePref.spacex = new
+                changePref.save()
         i = 0
         for i in companies:
-            # print(i)
             value = getattr(preference, i)
-            # print(value)
             if value is False:
                 not_preferred.append(i.upper())
             else:

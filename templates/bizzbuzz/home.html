@@ -76,6 +76,16 @@ $(function() {
                      <img src="{% static "images/bi-logo.png" %}" class="sourcelogo" style="height: 20px; margin-left:5px; margin-top:5px">
                  </a>
         {%  endif %}
+        {% if source == "NYTIMES" %}
+                 <a href="{{ url }}" >
+                     <img src="{% static "images/bi-logo.png" %}" class="sourcelogo" style="height: 20px; margin-left:5px; margin-top:5px">
+                 </a>
+        {%  endif %}
+        {% if source == "TECH_TIMES" %}
+                 <a href="{{ url }}" >
+                     <img src="{% static "images/bi-logo.png" %}" class="sourcelogo" style="height: 20px; margin-left:5px; margin-top:5px">
+                 </a>
+        {%  endif %}
         <span class="author" style = "margin-right:20px; margin-bottom: 15px"> {{ title }} </span>
        <details class="summary" style = "margin-right:20px; color: #252b27;  border-style:solid; background-color: #6f9196; border-color: #6f9196">
            <summary> <u> Article Summary </u> </summary>{{ summary }} </details>
