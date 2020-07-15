@@ -22,10 +22,6 @@ def login_view(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
-        # if request.user.is_authenticated:
-        #     messages.error(request, 'This account is already logged in')
-        #     return render(request, 'bizzbuzz/login.html')
-
         if user:    #gets username and password, logs the user in
             login(request, user)
             #if they've never logged in before, go to select channels
@@ -61,19 +57,11 @@ def signup_view(request):
             messages.error(request, 'Please enter a valid username and password')
             return render(request, 'bizzbuzz/signup.html')
 
-# def forgotpassword_view(request):
-#     return render(request,'bizzbuzz/forgotpassword.html')
-#
-# def searchchannel_view(request):
-#     if not request.user.is_authenticated:
-#         return redirect('login')
-#     return render(request,'bizzbuzz/searchchannel.html', {'name': request.user.username})
-
 def home_view(request):
     if not request.user.is_authenticated:
         return redirect('login')
     if request.method == 'POST' and 'run_script' in request.POST:
-        # calls update_db.py in bizzbuzz/management/commands
+        # calls update_db.py in bizzbuzz/management/commands to update the database
         management.call_command('update_db')
 
         # go back to home page with new articles showing
@@ -179,6 +167,3 @@ def selectchannel_view(request):
                 preferred.append(i.upper())
 
         return render(request, 'bizzbuzz/selectchannel.html', {'name': request.user.username, 'preferred': preferred, 'not_preferred': not_preferred})
-
-    def update_db(request):
-        print("HW")
