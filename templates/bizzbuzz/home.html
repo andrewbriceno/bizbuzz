@@ -29,6 +29,12 @@ $(function() {
 {#    <span class="subHeading"><a href=""> Settings</a></span>#}
     <span class="subHeading" style="margin-left: 800px; color: white; text-transform:capitalize; ">Welcome <b>{{ name }}</b>!</span>
 </div>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" name="run_script">Refresh News</button>
+</form>
+
 <div class="container">
 <div class="sidebar">
 {#    <form method="post" action="">#}
@@ -46,7 +52,7 @@ $(function() {
     </div>
         <div class="timeheading">
             <h1>This Week</h1>
-                <h3 style="margin-left: 27px">Click on a Card to View Article.</h3>
+                <h3 style="margin-left: 27px">Click on a Card to View An Article.</h3>
 
         </div>
         <div class="news">
@@ -66,6 +72,16 @@ $(function() {
                  </a>
         {%  endif %}
         {% if source == "BI" %}
+                 <a href="{{ url }}" >
+                     <img src="{% static "images/bi-logo.png" %}" class="sourcelogo" style="height: 20px; margin-left:5px; margin-top:5px">
+                 </a>
+        {%  endif %}
+        {% if source == "NYTIMES" %}
+                 <a href="{{ url }}" >
+                     <img src="{% static "images/bi-logo.png" %}" class="sourcelogo" style="height: 20px; margin-left:5px; margin-top:5px">
+                 </a>
+        {%  endif %}
+        {% if source == "TECH_TIMES" %}
                  <a href="{{ url }}" >
                      <img src="{% static "images/bi-logo.png" %}" class="sourcelogo" style="height: 20px; margin-left:5px; margin-top:5px">
                  </a>

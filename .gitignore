@@ -1,6 +1,5 @@
 #gets regenerated
 *.pyc
-__pycache__
+__pycache__\*
 *.xml
 venv
-bizzbuzz/__pycache__/__init__.cpython-38.pyc
