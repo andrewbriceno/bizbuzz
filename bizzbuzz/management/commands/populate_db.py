@@ -109,7 +109,10 @@ class Command(BaseCommand):
                     url = a_tag.attrs["href"]
                 if url in urls:
                     continue
-                sum = a_tag.find("p").text
+                sum = a_tag.find("p")
+                if not sum:
+                    continue
+                sum = sum.text
                 new_title = title.translate(translator)
                 company_check = set(company_master_list).intersection(new_title.upper().split(' '))
                 if company_check:

@@ -117,7 +117,10 @@ class Command(BaseCommand):
                 if "<News: News object" in hit:
                     continue    #don't add urls that are already in the DB or already going to be added
                 else:
-                    sum = a_tag.find("p").text
+                    sum = a_tag.find("p")
+                    if not sum:
+                        continue
+                    sum = sum.text
                     new_title = title.translate(translator)
                     company_check = set(company_master_list).intersection(new_title.upper().split(' '))
                     if company_check:
