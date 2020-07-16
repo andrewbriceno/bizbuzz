@@ -7,6 +7,7 @@ import requests
 
 class Command(BaseCommand):
     def purge_db(self):
+        # deletes articles that are more than a week old
         a_week_ago = datetime.now() - timedelta(days=7)
         News.objects.filter(expiration_date__contains=a_week_ago).delete()
 
@@ -15,7 +16,7 @@ class Command(BaseCommand):
         req = requests.get('https://www.forbes.com/business')
         soup = BeautifulSoup(req.content, features='html.parser')
 
-        # replaces punctuation with space so companies can be parsed
+        # replaces punctuation with space so companies can be parsed from title
         punctuations = '''!()-[]{};:\'\"\\”“’’‘‘,<>./?@#$%^&*_~'''
         translator = str.maketrans(punctuations, ' ' * len(punctuations))
 
@@ -26,7 +27,6 @@ class Command(BaseCommand):
 
         # finds each article
         articles = soup.findAll('h2')
-
         for article in articles:
             if article.a is not None:
                 url = article.a['href']
@@ -56,6 +56,7 @@ class Command(BaseCommand):
                   "https://www.businessinsider.com/science", "https://www.businessinsider.com/news",
                   "https://www.businessinsider.com/media", "https://www.businessinsider.com/enterprise"]
 
+        # replaces punctuation with space so companies can be parsed from title
         punctuations = '''!()-[]{};:\'\"\\”“’’‘‘,<>./?@#$%^&*_~'''
         translator = str.maketrans(punctuations, ' ' * len(punctuations))
 
@@ -91,15 +92,13 @@ class Command(BaseCommand):
                    "https://www.nytimes.com/section/business/energy-environment",
                    "https://www.nytimes.com/section/science", "https://www.nytimes.com/section/science/space"]
 
-        # replaces punctuation with space so companies can be parsed
+        # replaces punctuation with space so companies can be parsed from title
         punctuations = '''!()-[]{};:\'\"\\”“’’‘‘,<>./?@#$%^&*_~'''
         translator = str.maketrans(punctuations, ' ' * len(punctuations))
 
         company_master_list = ['AMAZON', 'SAMSUNG', 'IBM', 'TWITTER', 'NETFLIX',
                                'ORACLE', 'SAP', 'SALESFORCE', 'TESLA', 'SPACEX',
                                'MICROSOFT', 'APPLE', 'GOOGLE', 'FACEBOOK']
-
-        urls = []
 
         for scrape in NYTurls:
             req = requests.get(scrape)
@@ -132,7 +131,7 @@ class Command(BaseCommand):
         TTurls = ["https://www.techtimes.com/personaltech", "https://www.techtimes.com/science",
                   "https://www.techtimes.com/biztech", "https://www.techtimes.com/feature"]
 
-        # replaces punctuation with space so companies can be parsed
+        # replaces punctuation with space so companies can be parsed from title
         punctuations = '''!()-[]{};:\'\"\\”“’’‘‘,<>./?@#$%^&*_~'''
         translator = str.maketrans(punctuations, ' ' * len(punctuations))
 
