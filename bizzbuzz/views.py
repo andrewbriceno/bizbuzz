@@ -137,8 +137,6 @@ def selectchannel_view(request):
     elif request.method == 'POST':
         MyPrefForm = PrefForm(request.POST)
         changePref = Preferences.objects.get(username=username)
-        preferred = []
-        not_preferred = []
         if MyPrefForm.is_valid():
             if "apple" in request.POST:
                 current = changePref.apple
@@ -210,12 +208,5 @@ def selectchannel_view(request):
                 new = not current
                 changePref.spacex = new
                 changePref.save()
-        i = 0
-        for i in companies:
-            value = getattr(preference, i)
-            if value is False:
-                not_preferred.append(i.upper())
-            else:
-                preferred.append(i.upper())
 
-        return render(request, 'bizzbuzz/selectchannel.html', {'name': request.user.username, 'preferred': preferred, 'not_preferred': not_preferred})
+        return redirect('selectchannel')
