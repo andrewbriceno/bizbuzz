@@ -1,10 +1,25 @@
+html,body{
+   height: 100%;
+}
+
 body{
     background-color: #055662;
 }
+
+
 .navbar{
+    z-index: 1;
     display: flex;
     flex-direction: row;
-    padding: 10px;
+    padding:10px;
+    width: 100%;
+    margin-left: -10px;
+    background: #055662;
+    position: fixed;
+    top: 0px;
+    height: 40px;
+    opacity:1;
+    margin-bottom: 80px;
 }
 .mainHeading{
     font-size: 25px;
@@ -32,22 +47,23 @@ a:hover{
 }
 
 .container{
-    display: flex;
+    display:flex;
     flex-direction: row;
-    margin-top: 15px;
     width: 100%;
 }
 .sidebar
 {
-
+margin-top: 50px;
     border-right: darkgray solid 1px;
     display: flex;
     flex-direction: column;
     background-color: white;
-    width: 15%;
+    width: 3500px;
     margin-left: -7px;
     border-radius: 5px;
 padding-bottom: 250px;
+overflow-y: scroll;
+    height: 600px;
 }
 
 .favorite
@@ -94,6 +110,7 @@ background-color: #055662;
     background-color: white;
     margin-right: -5px;
     overflow-x: hidden;
+    margin-top: 40px;
 }
 .loginHeading
 {
