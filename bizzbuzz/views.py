@@ -88,7 +88,7 @@ def home_view(request):
 
         for pref in preferred:
             #filter articles containing relevant company name
-            news = News.objects.filter(title__icontains=pref)
+            news = News.objects.filter(company__icontains=pref)
             #hard coded 'applebee's' exception, can make more generic if other exceptions arise
             if pref.lower() == 'apple':
                 news=news.exclude(title__icontains="applebee's")
@@ -98,9 +98,7 @@ def home_view(request):
                     titles.append(getattr(n, 'title'))
                     urls.append(getattr(n, 'url'))
                     summaries.append(getattr(n, 'summary'))
-                    # comp_test = str(getattr(n, 'company'))    #TODO: this is how you test if the company column contains a certain company
-                    # if "GOOGLE" in comp_test:
-                    #     # do logic
+                    print(str(getattr(n, 'company')))
                     indices.append(i)
                     i+=1
                     #update with extra sources once we implement them
@@ -110,6 +108,10 @@ def home_view(request):
                         sources.append('NYTIMES')
                     elif 'techtimes.com' in getattr(n, 'url').lower():
                         sources.append('TECH_TIMES')
+                    elif 'bloomberg.com' in getattr(n, 'url').lower():
+                        sources.append('BLOOMBERG')
+                    elif 'marketwatch.com' in getattr(n, 'url').lower():
+                        sources.append('MARKET_WATCH')
                     else:
                         sources.append('BI')
         #zip together titles, urls, summaries, sources, and send to home.html
