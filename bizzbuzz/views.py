@@ -98,7 +98,7 @@ def home_view(request):
                     titles.append(getattr(n, 'title'))
                     urls.append(getattr(n, 'url'))
                     summaries.append(getattr(n, 'summary'))
-                    print(str(getattr(n, 'company')))
+                    # print(str(getattr(n, 'company')))
                     indices.append(i)
                     i+=1
                     #update with extra sources once we implement them
