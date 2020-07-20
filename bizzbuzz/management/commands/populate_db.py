@@ -148,9 +148,45 @@ class Command(BaseCommand):
                     article = News(title=title, url=url, summary=sum, company=company_check)
                     article.save()
 
+    def _MW(self):
+        MWurls = ["https://www.marketwatch.com/"]
+
+        # replaces punctuation with space so companies can be parsed from title
+        punctuations = '''!()-[]{};:\'\"\\”“’’‘‘,<>./?@#$%^&*_~'''
+        translator = str.maketrans(punctuations, ' ' * len(punctuations))
+
+        company_master_list = ['AMAZON', 'SAMSUNG', 'IBM', 'TWITTER', 'NETFLIX',
+                               'ORACLE', 'SAP', 'SALESFORCE', 'TESLA', 'SPACEX',
+                               'MICROSOFT', 'APPLE', 'GOOGLE', 'FACEBOOK']
+
+        for scrape in MWurls:
+            req = requests.get(scrape)
+            soup = BeautifulSoup(req.content, 'lxml')
+
+            # Finds all of the titles, urls, and summaries of each article
+            for div in soup.find_all("div", class_="article__content"):
+                h3 = div.h3
+                if h3 is not None:
+                    a_tag = h3.find("a", class_="link")
+                    if a_tag is not None and "Opinion:" not in a_tag.text:
+                        url = a_tag.attrs["href"]
+                        try:
+                            req = requests.get(url)
+                        except Exception:
+                            continue
+                        title = a_tag.text.strip()
+                        soup = BeautifulSoup(req.content, 'lxml')
+                        sum = soup.find('p').text.replace('\n', ' ')
+                        new_title = title.translate(translator)
+                        company_check = set(company_master_list).intersection(new_title.upper().split(' '))
+                        if company_check:
+                            article = News(title=title, url=url, summary=sum, company=company_check)
+                            article.save()
+
     def handle(self, *args, **options):
         self._delete_everything()
         self._forbes()
         self._BI()
         self._NYT()
         self._TT()
+        self._MW()
