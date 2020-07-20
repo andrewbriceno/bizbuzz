@@ -158,9 +158,50 @@ class Command(BaseCommand):
                         article = News(title=title, url=url, summary=sum, company=company_check)
                         article.save()
 
+    def add_MW_articles(self):
+        MWurls = ["https://www.marketwatch.com/"]
+
+        # replaces punctuation with space so companies can be parsed from title
+        punctuations = '''!()-[]{};:\'\"\\”“’’‘‘,<>./?@#$%^&*_~'''
+        translator = str.maketrans(punctuations, ' ' * len(punctuations))
+
+        company_master_list = ['AMAZON', 'SAMSUNG', 'IBM', 'TWITTER', 'NETFLIX',
+                               'ORACLE', 'SAP', 'SALESFORCE', 'TESLA', 'SPACEX',
+                               'MICROSOFT', 'APPLE', 'GOOGLE', 'FACEBOOK']
+
+        for scrape in MWurls:
+            req = requests.get(scrape)
+            soup = BeautifulSoup(req.content, 'lxml')
+
+            # Finds all of the titles, urls, and summaries of each article
+            for div in soup.find_all("div", class_="article__content"):
+                h3 = div.h3
+                if h3 is not None:
+                    a_tag = h3.find("a", class_="link")
+                    if a_tag is not None and "Opinion:" not in a_tag.text:
+                        url = a_tag.attrs["href"]
+                        try:
+                            req = requests.get(url)
+                        except Exception:
+                            continue
+                        hit = str(News.objects.filter(url=url))
+                        if "<News: News object" in hit:
+                            continue  # don't add urls that are already in the DB or already going to be added
+                        else:
+                            title = a_tag.text.strip()
+                            soup = BeautifulSoup(req.content, 'lxml')
+                            sum = soup.find('p').text.replace('\n', ' ')
+                            new_title = title.translate(translator)
+                            company_check = set(company_master_list).intersection(new_title.upper().split(' '))
+                            if company_check:
+                                article = News(title=title, url=url, summary=sum, company=company_check)
+                                article.save()
+
+
     def handle(self, *args, **options):
         self.purge_db()
         self.add_forbes_articles()
         self.add_BI_articles()
         self.add_NYT_articles()
         self.add_TT_articles()
+        self.add_MW_articles()
