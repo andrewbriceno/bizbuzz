@@ -85,5 +85,10 @@ def main():
                 #print(url)
                 #print(sum)
 
+    for x, y, z in zip(titles, urls, summaries):
+        print(x)
+        print(y)
+        print(z)
+
 if __name__ == '__main__':
     main()
