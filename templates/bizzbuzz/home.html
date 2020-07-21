@@ -74,11 +74,6 @@ $(function() {
         <div class="newsCard">
 <button class="number" disabled >{{ index }}</button>
     <div class="textcontainer">
-        {% if source == "FORBES" %}
-                 <a href="{{ url }}" >
-                     <img src="{% static "images/forbes-logo.png" %}" class="sourcelogo" style="color:white;height: 20px; margin-left:5px; margin-top:5px">
-                 </a>
-        {%  endif %}
         {% if source == "BI" %}
                  <a href="{{ url }}" style="color:white;">
                      <img src="{% static "images/bi-logo.png" %}" class="sourcelogo" style="height: 20px; margin-left:5px; margin-top:5px">
@@ -92,11 +87,6 @@ $(function() {
         {% if source == "TECH_TIMES" %}
                  <a href="{{ url }}" style="color:white;">
                      <img src="{% static "images/tt-logo.png" %}" class="sourcelogo" style="height: 30px; margin-left:5px; margin-top:5px">
-                 </a>
-        {%  endif %}
-        {% if source == "BLOOMBERG" %}
-                 <a href="{{ url }}" style="color:white;">
-                     <img src="{% static "images/bloomberg-logo.png" %}" class="sourcelogo" style="height: 20px; margin-left:5px; margin-top:5px">
                  </a>
         {%  endif %}
         {% if source == "MARKETWATCH" %}
@@ -131,11 +121,6 @@ $(function() {
 
 
     <div class="textcontainer">
-        {% if source == "FORBES" %}
-                 <a href="{{ url }}" >
-                     <img src="{% static "images/forbes-logo.png" %}" class="sourcelogo" style="color:white;height: 20px; margin-left:5px; margin-top:5px">
-                 </a>
-        {%  endif %}
         {% if source == "BI" %}
                  <a href="{{ url }}" style="color:white;">
                      <img src="{% static "images/bi-logo.png" %}" class="sourcelogo" style="height: 20px; margin-left:5px; margin-top:5px">
@@ -149,11 +134,6 @@ $(function() {
         {% if source == "TECH_TIMES" %}
                  <a href="{{ url }}" style="color:white;">
                      <img src="{% static "images/tt-logo.png" %}" class="sourcelogo" style="height: 30px; margin-left:5px; margin-top:5px">
-                 </a>
-        {%  endif %}
-        {% if source == "BLOOMBERG" %}
-                 <a href="{{ url }}" style="color:white;">
-                     <img src="{% static "images/bloomberg-logo.png" %}" class="sourcelogo" style="height: 20px; margin-left:5px; margin-top:5px">
                  </a>
         {%  endif %}
         {% if source == "MARKETWATCH" %}

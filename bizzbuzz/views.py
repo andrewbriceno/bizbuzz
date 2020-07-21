@@ -108,14 +108,10 @@ def home_view(request):
                     indices.append(i)
                     i+=1
                     #update with extra sources once we implement them
-                    if 'forbes.com' in getattr(n, 'url').lower():
-                        sources.append('FORBES')
-                    elif 'nytimes.com' in getattr(n, 'url').lower():
+                    if 'nytimes.com' in getattr(n, 'url').lower():
                         sources.append('NYTIMES')
                     elif 'techtimes.com' in getattr(n, 'url').lower():
                         sources.append('TECH_TIMES')
-                    elif 'bloomberg.com' in getattr(n, 'url').lower():
-                        sources.append('BLOOMBERG')
                     elif 'marketwatch.com' in getattr(n, 'url').lower():
                         sources.append('MARKET_WATCH')
                     else:
