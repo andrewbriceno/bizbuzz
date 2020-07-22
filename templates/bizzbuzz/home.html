@@ -76,7 +76,7 @@ $(function() {
 <button class="number" disabled >{{ index }}</button>
 
 
-    <div class="textcontainer">
+     <div class="textcontainer">
         {% if source == "FORBES" %}
                  <a href="{{ url }}" >
                      <img src="{% static "images/forbes-logo.png" %}" class="sourcelogo" style="color:white;height: 20px; margin-left:5px; margin-top:5px">
@@ -89,12 +89,22 @@ $(function() {
         {%  endif %}
         {% if source == "NYTIMES" %}
                  <a href="{{ url }}" style="color:white;">
-                     <img src="{% static "images/bi-logo.png" %}" class="sourcelogo" style="height: 20px; margin-left:5px; margin-top:5px">
+                     <img src="{% static "images/nyt-logo.png" %}" class="sourcelogo" style="height: 40px; margin-left:5px; margin-top:5px">
                  </a>
         {%  endif %}
         {% if source == "TECH_TIMES" %}
                  <a href="{{ url }}" style="color:white;">
-                     <img src="{% static "images/bi-logo.png" %}" class="sourcelogo" style="height: 20px; margin-left:5px; margin-top:5px">
+                     <img src="{% static "images/tt-logo.png" %}" class="sourcelogo" style="height: 30px; margin-left:5px; margin-top:5px">
+                 </a>
+        {%  endif %}
+        {% if source == "BLOOMBERG" %}
+                 <a href="{{ url }}" style="color:white;">
+                     <img src="{% static "images/bloomberg-logo.png" %}" class="sourcelogo" style="height: 20px; margin-left:5px; margin-top:5px">
+                 </a>
+        {%  endif %}
+        {% if source == "MARKETWATCH" %}
+                 <a href="{{ url }}" style="color:white;">
+                     <img src="{% static "images/mw-logo.png" %}" class="sourcelogo" style="height: 20px; margin-left:5px; margin-top:5px">
                  </a>
         {%  endif %}
         <span class="author" style = "margin-right:20px; margin-bottom: 15px"> {{ title }} </span>
