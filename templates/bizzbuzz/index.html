@@ -23,114 +23,35 @@ $(function() {
 });
 </script>
 <div class="navbar">
-<span class="mainHeading"><a href="/bizzbuzz/home"><img src="{%  static "images/newlogo.png" %}" style="height: 140px; width: 180px;margin-top: -45px;"></a> </span>
+<span class="mainHeading"><a href="/bizzbuzz/"><img src="{%  static "images/newlogo.png" %}" style="height: 140px; width: 180px;margin-top: -45px;"></a> </span>
 {#    <span class="subHeading"><a href="/bizzbuzz/searchchannel"> Search Channel</a></span>#}
     <span class="subHeading"><a href="/bizzbuzz/login"> Login</a></span>
     <span class="subHeading"><a href="/bizzbuzz/signup"> Sign Up</a></span>
 </div>
-<div class="container">
-<div class="sidebar">
-{#    <form method="post" action="">#}
-{#        <input type="search" placeholder="Filter Feeds" class="searchbox"></form>#}
-{#    <a href="#" id="link1"> <img src="{% static "images/heart.png" %}" class="favorite"></a>#}
-    <a href="#" id="link5"> <img src="{% static "images/Amazon.png" %}" class="channel" style="height: 50px;margin-right: 45px;"></a>
-    <a href="#" id="link2"> <img src="{% static "images/apple.png" %}" class="channel" style="margin-right: 45px;"></a>
-    <a href="#" id="link4"> <img src="{% static "images/facebook.png" %}" class="channel" style="margin-right: 45px;"></a>
-    <a href="#" id="link3"> <img src="{% static "images/google.png" %}" class="channel" style="margin-right: 45px;"></a>
-    <a href="#" id="link5"> <img src="{% static "images/ibm.png" %}" class="channel" style="width:100px;height: 70px;margin-right: 45px;margin-left: 27px"></a>
-    <a href="#" id="link5"> <img src="{% static "images/microsoft.png" %}" class="channel" style="height: 50px;margin-right: 45px;"></a>
-    <a href="#" id="link5"> <img src="{% static "images/netflix.png" %}" class="channel" style="width:80px;margin-left:35px;height: 60px;margin-right: 45px;"></a>
-    <a href="#" id="link5"> <img src="{% static "images/oracle.png" %}" class="channel" style="width:90px;height: 90px;margin-top:-15px;margin-left:35px;margin-bottom:-35px;margin-right: 45px;"></a>
-    <a href="#" id="link5"> <img src="{% static "images/sales.png" %}" class="channel" style="width:100px;height: 80px;margin-left:30px;margin-right: 5px;margin-top:20px;"></a>
-    <a href="#" id="link5"> <img src="{% static "images/samsung.png" %}" class="channel" style="width:150px;height: 50px;margin-left:5px;margin-right: 5px;"></a>
-    <a href="#" id="link5"> <img src="{% static "images/Sap.png" %}" class="channel" style="width:150px;height: 50px;margin-left:12px;margin-right: 10px;"></a>
-    <a href="#" id="link5"> <img src="{% static "images/spacex.png" %}" class="channel" style="width:150px;height: 70px;margin-left:12px;margin-right: 10px;"></a>
-    <a href="#" id="link5"> <img src="{% static "images/tesla.png" %}" class="channel" style="width:100px;height: 70px;margin-left:25px;margin-right: 10px;margin-top:10px;"></a>
-    <a href="#" id="link5"> <img src="{% static "images/twitter.png" %}" class="channel" style="width:80px;height: 70px;margin-right: 45px;margin-top:10px;"></a>
+<div style="background: white;margin-top: 80px;height: 100%;width: 100%;">
+<div class="col" style="width: 100%;padding-left: 150px;height: 100px;">
+    <div class="row" style="width: 100%;padding-top: 60px;font-size: 46px;color: #055662;font-family:Georgia;line-height:1.5em;padding-left: 160px;font-weight: bold;">One stop for all the news from your<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;favorite channels</div>
+<div class="row" style="color: #055662;padding-top: 30px; width: 100%;font-size: 26px;color: #055662;padding-left: 225px;line-height: 1.5em;">BizzBuzz is the simple free news reader. Discover the best tools,<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;resources and inspiration in the world of design and tech.</div>
 </div>
-
-    <div class="feed">
-    <div class="favoritebar">
-{#        <span class="subHeading"><a href="">Add to Favorites</a> </span>#}
-{#        <span class="subHeading"><a href="">Remove from Favorites</a> </span>#}
-    </div>
-        <div class="timeheading">
-            <h1>Today</h1>
-        </div>
-        <div class="news">
-            <a href="">
-<div class="newsCard">
-<button class="number" disabled>1</button>
-    <div class="textcontainer">
-        <span class="feedtext">Welcome to Bizz Buzz</span>
-        <span class="author">By BizzBuzzers</span>
-        </div>
-</div></a>
-            <a href="">
-<div class="newsCard">
-<button class="number" disabled>2</button>
-    <div class="textcontainer">
-        <span class="feedtext">Welcome to Bizz Buzz</span>
-        <span class="author">By BizzBuzzers</span>
-        </div>
-</div></a>
-            <a href="">
-<div class="newsCard">
-<button class="number" disabled>3</button>
-    <div class="textcontainer">
-        <span class="feedtext">Welcome to Bizz Buzz</span>
-        <span class="author">By BizzBuzzers</span>
-        </div>
-</div></a>
-            <a href="">
-<div class="newsCard">
-<button class="number" disabled>4</button>
-    <div class="textcontainer">
-        <span class="feedtext">Welcome to Bizz Buzz</span>
-        <span class="author">By BizzBuzzers</span>
-        </div>
-</div></a>
-        </div>
-        <div class="timeheading">
-            <h1>This Week</h1>
-        </div>
-              <div class="news">
-            <a href="">
-<div class="newsCard">
-<button class="number" disabled>1</button>
-    <div class="textcontainer">
-        <span class="feedtext">Welcome to Bizz Buzz</span>
-        <span class="author">By BizzBuzzers</span>
-        </div>
-</div></a>
-            <a href="">
-<div class="newsCard">
-<button class="number" disabled>2</button>
-    <div class="textcontainer">
-        <span class="feedtext">Welcome to Bizz Buzz</span>
-        <span class="author">By BizzBuzzers</span>
-        </div>
-</div></a>
-            <a href="">
-<div class="newsCard">
-<button class="number" disabled>3</button>
-    <div class="textcontainer">
-       <span class="feedtext">Welcome to Bizz Buzz</span>
-        <span class="author">By BizzBuzzers</span>
-        </div>
-</div></a>
-            <a href="">
-<div class="newsCard">
-<button class="number" disabled>4</button>
-    <div class="textcontainer">
-      <span class="feedtext">Welcome to Bizz Buzz</span>
-        <span class="author">By BizzBuzzers</span>
-
-        </div>
-</div></a>
-        </div>
+    <div class="row" style="padding-top:240px;">
+    <img src="{% static "images/Amazon.png" %}" class="channel" >
+    <img src="{% static "images/apple.png" %}" class="channel" >
+    <img src="{% static "images/facebook.png" %}" class="channel" >
+    <img src="{% static "images/google.png" %}" class="channel" >
+    <img src="{% static "images/ibm.png" %}" class="channel" >
+    <img src="{% static "images/microsoft.png" %}" class="channel" >
+    <img src="{% static "images/netflix.png" %}" class="channel" >
+    <img src="{% static "images/oracle.png" %}" class="channel" >
+    <img src="{% static "images/sales.png" %}" class="channel" >
+    <img src="{% static "images/samsung.png" %}" class="channel" >
+    <img src="{% static "images/Sap.png" %}" class="channel" >
+    <img src="{% static "images/spacex.png" %}" class="channel" >
+    <img src="{% static "images/tesla.png" %}" class="channel" >
+    <img src="{% static "images/twitter.png" %}" class="channel" >
 </div>
-    </div>
+</div>
 
 </body>
 </html>

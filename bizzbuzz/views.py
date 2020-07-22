@@ -10,6 +10,7 @@ from bizzbuzz.forms import PrefForm
 import time
 from django.core import management
 from bizzbuzz.management.commands import update_db
+from datetime import datetime, time, timedelta
 
 
 def index_view(request):
@@ -84,6 +85,7 @@ def home_view(request):
         summaries = []
         indices = []
         sources = []
+        dates = []
         i = 1
 
         for pref in preferred:
@@ -98,24 +100,24 @@ def home_view(request):
                     titles.append(getattr(n, 'title'))
                     urls.append(getattr(n, 'url'))
                     summaries.append(getattr(n, 'summary'))
-                    # print(str(getattr(n, 'company')))
+                    # dates.append(getattr(n, 'expiration_date'))
+                    if str(datetime.now().date()) == str(getattr(n, 'expiration_date'))[0:10]:
+                        dates.append(True)
+                    else:
+                        dates.append(False)
                     indices.append(i)
                     i+=1
                     #update with extra sources once we implement them
-                    if 'forbes.com' in getattr(n, 'url').lower():
-                        sources.append('FORBES')
-                    elif 'nytimes.com' in getattr(n, 'url').lower():
+                    if 'nytimes.com' in getattr(n, 'url').lower():
                         sources.append('NYTIMES')
                     elif 'techtimes.com' in getattr(n, 'url').lower():
                         sources.append('TECH_TIMES')
-                    elif 'bloomberg.com' in getattr(n, 'url').lower():
-                        sources.append('BLOOMBERG')
                     elif 'marketwatch.com' in getattr(n, 'url').lower():
                         sources.append('MARKET_WATCH')
                     else:
                         sources.append('BI')
         #zip together titles, urls, summaries, sources, and send to home.html
-        return render(request, 'bizzbuzz/home.html', {'name': username, 'articles' : zip(titles, urls, summaries, sources, indices)})
+        return render(request, 'bizzbuzz/home.html', {'name': username, 'articles' : zip(titles, urls, summaries, sources, indices, dates), 'articles2' : zip(titles, urls, summaries, sources, indices, dates)})
 
 def selectchannel_view(request):
     if not request.user.is_authenticated:
