@@ -127,7 +127,7 @@ def selectchannel_view(request):
     if request.method == 'GET':
         preferred = []
         not_preferred = []
-        i = 0
+        #i = 0
         for i in companies: #gets the current values of each company, puts in appropriate list, and passes lists to HTML
             value = getattr(preference, i)
             if value is False:
@@ -135,7 +135,7 @@ def selectchannel_view(request):
             else:
                 preferred.append(i.upper())
 
-        return render(request,'bizzbuzz/selectchannel.html', {'name': request.user.username, 'preferred': preferred, 'not_preferred': not_preferred})
+        return render(request,'bizzbuzz/selectchannel.html', {'name': request.user.username, 'preferred': preferred, 'not_preferred': not_preferred, 'preference': preference})
     elif request.method == 'POST':
         MyPrefForm = PrefForm(request.POST)
         changePref = Preferences.objects.get(username=username)
