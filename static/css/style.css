@@ -57,13 +57,13 @@ a:hover{
 .sidebar {
     margin-top: 50px;
     border-right: darkgray solid 1px;
-    display: flex;
-    flex-direction: column;
+    /*display: flex;*/
+    /*flex-direction: column;*/
     background-color: white;
-    width: 800px;
+    width: 4900px;
     padding-top:20px;
     margin-left: -7px;
-    border-radius: 5px;
+    /*border-radius: 50px;*/
     padding-bottom: 250px;
     overflow-y: scroll;
     height: 600px;
