@@ -140,75 +140,19 @@ def selectchannel_view(request):
         MyPrefForm = PrefForm(request.POST)
         changePref = Preferences.objects.get(username=username)
         if MyPrefForm.is_valid():
-            if "apple" in request.POST:
-                current = changePref.apple
-                new = not current
-                changePref.apple = new
-                changePref.save()
-            if "microsoft" in request.POST:
-                current = changePref.microsoft
-                new = not current
-                changePref.microsoft = new
-                changePref.save()
-            if "facebook" in request.POST:
-                current = changePref.facebook
-                new = not current
-                changePref.facebook = new
-                changePref.save()
-            if "google" in request.POST:
-                current = changePref.google
-                new = not current
-                changePref.google = new
-                changePref.save()
-            if "amazon" in request.POST:
-                current = changePref.amazon
-                new = not current
-                changePref.amazon = new
-                changePref.save()
-            if "samsung" in request.POST:
-                current = changePref.samsung
-                new = not current
-                changePref.samsung = new
-                changePref.save()
-            if "ibm" in request.POST:
-                current = changePref.ibm
-                new = not current
-                changePref.ibm = new
-                changePref.save()
-            if "twitter" in request.POST:
-                current = changePref.twitter
-                new = not current
-                changePref.twitter = new
-                changePref.save()
-            if "netflix" in request.POST:
-                current = changePref.netflix
-                new = not current
-                changePref.netflix = new
-                changePref.save()
-            if "oracle" in request.POST:
-                current = changePref.oracle
-                new = not current
-                changePref.oracle = new
-                changePref.save()
-            if "sap" in request.POST:
-                current = changePref.sap
-                new = not current
-                changePref.sap = new
-                changePref.save()
-            if "salesforce" in request.POST:
-                current = changePref.salesforce
-                new = not current
-                changePref.salesforce = new
-                changePref.save()
-            if "tesla" in request.POST:
-                current = changePref.tesla
-                new = not current
-                changePref.tesla = new
-                changePref.save()
-            if "spacex" in request.POST:
-                current = changePref.spacex
-                new = not current
-                changePref.spacex = new
-                changePref.save()
-
+            changePref.amazon = True if "amazon" in request.POST else False
+            changePref.apple = True if "apple" in request.POST else False
+            changePref.facebook = True if "facebook" in request.POST else False
+            changePref.google = True if "google" in request.POST else False
+            changePref.ibm = True if "ibm" in request.POST else False
+            changePref.microsoft = True if "microsoft" in request.POST else False
+            changePref.netflix = True if "netflix" in request.POST else False
+            changePref.oracle = True if "oracle" in request.POST else False
+            changePref.salesforce = True if "salesforce" in request.POST else False
+            changePref.samsung = True if "samsung" in request.POST else False
+            changePref.sap = True if "sap" in request.POST else False
+            changePref.spacex = True if "spacex" in request.POST else False
+            changePref.tesla = True if "tesla" in request.POST else False
+            changePref.twitter = True if "twitter" in request.POST else False
+            changePref.save()
         return redirect('selectchannel')
