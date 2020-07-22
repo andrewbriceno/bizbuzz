@@ -53,36 +53,27 @@ $(function() {
 
     <div class="feed">
     <div class="favoritebar">
-
     </div>
-        <div class="timeheading">
-            <h1>This Week</h1>
-<!--                <h3 style="margin-left: 27px">Click on a Card to View An Article.</h3>-->
+
 <form method="post">
     {% csrf_token %}
-<!--<<<<<<< HEAD-->
-<!--    <button type="submit" name="run_script" style="margin-left: 27px">Refresh News</button>-->
-<!--=======-->
+    <h1></h1>
     <button type="submit" name="run_script" class="refresh">Refresh News</button>
-<!--&gt;>>>>>> e919380a249927d084bedb06ef145c4badee1b99-->
 </form>
+
+        <div class="timeheading">
+            <h1>Recent</h1>
         </div>
+
         <div class="news">
             <a href="">
 
- {% for title, url, summary, source, index  in articles %}
-
+ {% for title, url, summary, source, index, date  in articles %}
+    {% if date == True %}
      <a target="_blank" rel="noopener noreferrer" href="{{ url }}">
         <div class="newsCard">
 <button class="number" disabled >{{ index }}</button>
-
-
     <div class="textcontainer">
-        {% if source == "FORBES" %}
-                 <a href="{{ url }}" >
-                     <img src="{% static "images/forbes-logo.png" %}" class="sourcelogo" style="color:white;height: 20px; margin-left:5px; margin-top:5px">
-                 </a>
-        {%  endif %}
         {% if source == "BI" %}
                  <a href="{{ url }}" style="color:white;">
                      <img src="{% static "images/bi-logo.png" %}" class="sourcelogo" style="height: 20px; margin-left:5px; margin-top:5px">
@@ -98,11 +89,6 @@ $(function() {
                      <img src="{% static "images/tt-logo.png" %}" class="sourcelogo" style="height: 30px; margin-left:5px; margin-top:5px">
                  </a>
         {%  endif %}
-        {% if source == "BLOOMBERG" %}
-                 <a href="{{ url }}" style="color:white;">
-                     <img src="{% static "images/bloomberg-logo.png" %}" class="sourcelogo" style="height: 20px; margin-left:5px; margin-top:5px">
-                 </a>
-        {%  endif %}
         {% if source == "MARKETWATCH" %}
                  <a href="{{ url }}" style="color:white;">
                      <img src="{% static "images/mw-logo.png" %}" class="sourcelogo" style="height: 20px; margin-left:5px; margin-top:5px">
@@ -115,13 +101,57 @@ $(function() {
         </div>
      </div>
      </a>
-
+ {% endif %}
  {% endfor %}
-
-
-
         </a>
 </div>
+
+        <div class="timeheading">
+            <h1>Earlier This Week</h1>
+        </div>
+
+        <div class="news">
+            <a href="">
+
+ {% for title, url, summary, source, index, date  in articles2 %}
+    {% if date == False %}
+     <a target="_blank" rel="noopener noreferrer" href="{{ url }}">
+        <div class="newsCard">
+<button class="number" disabled >{{ index }}</button>
+
+
+    <div class="textcontainer">
+        {% if source == "BI" %}
+                 <a href="{{ url }}" style="color:white;">
+                     <img src="{% static "images/bi-logo.png" %}" class="sourcelogo" style="height: 20px; margin-left:5px; margin-top:5px">
+                 </a>
+        {%  endif %}
+        {% if source == "NYTIMES" %}
+                 <a href="{{ url }}" style="color:white;">
+                     <img src="{% static "images/nyt-logo.png" %}" class="sourcelogo" style="height: 40px; margin-left:5px; margin-top:5px">
+                 </a>
+        {%  endif %}
+        {% if source == "TECH_TIMES" %}
+                 <a href="{{ url }}" style="color:white;">
+                     <img src="{% static "images/tt-logo.png" %}" class="sourcelogo" style="height: 30px; margin-left:5px; margin-top:5px">
+                 </a>
+        {%  endif %}
+        {% if source == "MARKETWATCH" %}
+                 <a href="{{ url }}" style="color:white;">
+                     <img src="{% static "images/mw-logo.png" %}" class="sourcelogo" style="height: 20px; margin-left:5px; margin-top:5px">
+                 </a>
+        {%  endif %}
+        <span class="author" style = "margin-right:20px; margin-bottom: 15px"> {{ title }} </span>
+       <details class="summary" style = "margin-right:20px; color: white;  border:none; background-color: #055662;">
+           <summary> <u> Article Summary </u> </summary>{{ summary }} </details>
+        </div>
+     </div>
+     </a>
+ {% endif %}
+ {% endfor %}
+        </a>
+    </div>
+
 </div>
 </div>
 </body>
