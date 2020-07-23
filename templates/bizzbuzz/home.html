@@ -8,20 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 <body>
-<script>
-    function setActiveLink(setActive){
-    if ($("a").hasClass('active'))
-        $("a").removeClass('active');
-    if (setActive)
-        $("#"+setActive).addClass('active');
-}
 
-$(function() {
-    $("a").click(function() {
-        setActiveLink(this.id);
-    });
-});
-</script>
 <div class="navbar">
 <span class="mainHeading"><a href="/bizzbuzz/home"><img src="{%  static "images/newlogo.png" %}" style="height: 140px; width: 180px;margin-top: -45px;"></a> </span>
     <span class="subHeading"><a href="/bizzbuzz/selectchannel">Manage Company Subscriptions</a></span>
@@ -35,24 +22,37 @@ $(function() {
 <!--{#    <form method="post" action="">#}-->
 <!--{#        <input type="search" placeholder="" class="searchbox"></form>#}-->
 <!--{#    <a href="#" id="link1"> <img src="{% static "images/heart.png" %}" class="favorite"></a>#}-->
-    <img src="{% static "images/Amazon.png" %}" class="channel" style="height: 50px;margin-right: 45px;"></a>
-    <img src="{% static "images/apple.png" %}" class="channel" style="margin-right: 45px;"></a>
+    <div class="row">
+    <img src="{% static "images/Amazon.png" %}" class="channel" style="height: 50px;margin-right: 45px;margin-top: 75px;"></a>
+    <img src="{% static "images/apple.png" %}" class="channel" style="margin-right: 45px;margin-top: 70px;"></a>
+        </div>
+    <div class="row">
     <img src="{% static "images/facebook.png" %}" class="channel" style="margin-right: 45px;"></a>
     <img src="{% static "images/google.png" %}" class="channel" style="margin-right: 45px;"></a>
+    </div>
+    <div class="row">
     <img src="{% static "images/ibm.png" %}" class="channel" style="width:100px;height: 70px;margin-right: 45px;margin-left: 27px"></a>
-    <img src="{% static "images/microsoft.png" %}" class="channel" style="height: 50px;margin-right: 45px;"></a>
+    <img src="{% static "images/microsoft.png" %}" class="channel" style="height: 50px;margin-left: 18px;margin-top: 22px;"></a>
+    </div>
+    <div class="row">
     <img src="{% static "images/netflix.png" %}" class="channel" style="width:80px;margin-left:35px;height: 60px;margin-right: 45px;"></a>
-    <img src="{% static "images/oracle.png" %}" class="channel" style="width:90px;height: 90px;margin-top:-15px;margin-left:35px;margin-bottom:-35px;margin-right: 45px;"></a>
-    <img src="{% static "images/sales.png" %}" class="channel" style="width:100px;height: 80px;margin-left:30px;margin-right: 5px;margin-top:20px;"></a>
-    <img src="{% static "images/samsung.png" %}" class="channel" style="width:150px;height: 50px;margin-left:5px;margin-right: 5px;"></a>
-    <img src="{% static "images/Sap.png" %}" class="channel" style="width:150px;height: 50px;margin-left:12px;margin-right: 10px;"></a>
-    <img src="{% static "images/spacex.png" %}" class="channel" style="width:150px;height: 70px;margin-left:12px;margin-right: 10px;"></a>
+    <img src="{% static "images/oracle.png" %}" class="channel" style="width:90px;height: 90px;margin-top: 0px;margin-left: 18px;"></a>
+    </div>
+    <div class="row">
+    <img src="{% static "images/sales.png" %}" class="channel" style="width:100px;height: 80px;margin-left:30px;margin-right: 5px;margin-top:0px;"></a>
+    <img src="{% static "images/samsung.png" %}" class="channel" style="width:150px;height: 50px;margin-left:5px;margin-right: 5px;margin-top: 10px;"></a>
+    </div>
+    <div class="row">
+    <img src="{% static "images/Sap.png" %}" class="channel" style="width:150px;height: 50px;margin-left:20px;margin-top: 20px;"></a>
+    <img src="{% static "images/spacex.png" %}" class="channel" style="width:150px;height: 70px;margin-left:0px;margin-top: 10px;"></a>
+    </div>
+    <div class="row">
     <img src="{% static "images/tesla.png" %}" class="channel" style="width:100px;height: 70px;margin-left:25px;margin-right: 10px;margin-top:10px;"></a>
     <img src="{% static "images/twitter.png" %}" class="channel" style="width:80px;height: 70px;margin-right: 45px;margin-top:10px;"></a>
+    </div>
 </div>
 
     <div class="feed">
-    <div class="favoritebar"></div>
 
 <form method="post">
     {% csrf_token %}
@@ -94,7 +94,7 @@ $(function() {
                  </a>
         {%  endif %}
         <span class="author" style = "margin-right:20px; margin-bottom: 15px"> {{ title }} </span>
-       <details class="summary" style = "margin-right:20px; color: white;  border:none; background-color: #055662;">
+       <details class="summary" style = "margin-right:20px; color: white;  border:none; background-color: #04B9D3;">
            <summary> <u> Article Summary </u> </summary>{{ summary }} </details>
 
         </div>
@@ -106,7 +106,7 @@ $(function() {
      </div>
 
     <div class="timeheading">
-        <h1>This Week</h1>
+        <h1>Earlier</h1>
     </div>
 
         <div class="news">
