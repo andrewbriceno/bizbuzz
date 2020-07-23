@@ -55,7 +55,7 @@ a:hover{
     height: 100%;
 }
 .sidebar {
-    margin-top: 50px;
+    margin-top: 10px;
     border-right: darkgray solid 1px;
     display: flex;
     flex-direction: column;
