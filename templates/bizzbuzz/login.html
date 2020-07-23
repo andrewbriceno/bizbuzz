@@ -8,20 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 <body>
-<script>
-    function setActiveLink(setActive){
-    if ($("a").hasClass('active'))
-        $("a").removeClass('active');
-    if (setActive)
-        $("#"+setActive).addClass('active');
-}
 
-$(function() {
-    $("a").click(function() {
-        setActiveLink(this.id);
-    });
-});
-</script>
 <div class="navbar">
 <span class="mainHeading"><a href="/bizzbuzz/"><img src="{%  static "images/newlogo.png" %}" style="height: 140px; width: 180px;margin-top: -45px;"></a> </span>
     <span class="subHeading"><a href="/bizzbuzz/signup"> Sign Up</a></span>
@@ -30,7 +17,7 @@ $(function() {
 
     <div class="feed" style="padding-left: 150px;padding-right: 68px;padding-bottom: 210px;">
 
-        <span class="loginHeading">Login</span>
+        <span class="loginHeading" style="margin-top: 50px;">Login</span>
 
 <div class="loginContainer">
     <form action="" method="POST">
