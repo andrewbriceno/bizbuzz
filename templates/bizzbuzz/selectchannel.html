@@ -8,20 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 <body>
-<script>
-    function setActiveLink(setActive){
-    if ($("a").hasClass('active'))
-        $("a").removeClass('active');
-    if (setActive)
-        $("#"+setActive).addClass('active');
-}
 
-$(function() {
-    $("a").click(function() {
-        setActiveLink(this.id);
-    });
-});
-</script>
 <div class="navbar">
 <span class="mainHeading"><a href="/bizzbuzz/home"><img src="{%  static "images/newlogo.png" %}" style="height: 140px; width: 180px;margin-top: -45px;"></a> </span>
     <span class="subHeading"><a href="/bizzbuzz/selectchannel">Manage Company Subscriptions</a></span>
@@ -40,7 +27,7 @@ $(function() {
 {#        {% for field in not_preferred %}#}
 {#        <span class="loginHeading" style="margin-left: 510px;font-size: 16px;padding-top: 0px;">{{ field }} </span>#}
 {#        {% endfor %}#}
-<div class="loginContainer">
+<div class="loginContainer" style="margin-bottom: 50px;margin-top: 190px;">
     <form action="" method="POST">
         {% csrf_token %}
 
