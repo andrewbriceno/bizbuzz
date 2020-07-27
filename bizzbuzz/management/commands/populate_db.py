@@ -39,6 +39,20 @@ class Command(BaseCommand):
                     article = News(title=title, url=url, summary=sum, company=company_check)
                     article.save()
 
+        req = requests.get("https://www.forbes.com/enterprise-tech")
+
+        for div in soup.find_all("div", class_="stream-item__text"):
+            a_tag = div.a
+            if a_tag is not None:
+                url = a_tag.attrs["href"]
+                title = a_tag.text
+                sum = div.find("div", class_="stream-item__description").text
+                new_title = title.translate(translator)
+                company_check = set(company_master_list).intersection(new_title.upper().split(' '))
+                if company_check:
+                    article = News(title=title, url=url, summary=sum, company=company_check)
+                    article.save()
+
     def _BI(self):
         # In order: Tech, Finance, Strategy, Retail, Executive, Prime, Intelligence, Politics, Transportation, Markets,
         # Science, News, Media, Enterprise
