@@ -90,7 +90,7 @@
         {%  endif %}
         {% if source == "MARKET_WATCH" %}
                  <a href="{{ url }}" style="color:white;">
-                     <img src="{% static "images/mw-logo.png" %}" class="sourcelogo" style="height: 20px; margin-left:5px; margin-top:5px">
+                     <img src="{% static "images/forbes-logo.png" %}" class="sourcelogo" style="height: 20px; margin-left:5px; margin-top:5px">
                  </a>
         {%  endif %}
         <span class="author" style = "margin-right:20px; margin-bottom: 15px"> {{ title }} </span>
@@ -109,7 +109,7 @@
         <h1>Earlier</h1>
     </div>
 
-        <div class="news">
+        <div class="news" style="margin-bottom: 50px;">
             <a href="">
 
  {% for title, url, summary, source, index, dates in articles2 %}
@@ -135,11 +135,11 @@
         {%  endif %}
         {% if source == "MARKET_WATCH" %}
                  <a href="{{ url }}" style="color:white;">
-                     <img src="{% static "images/mw-logo.png" %}" class="sourcelogo" style="height: 20px; margin-left:5px; margin-top:5px">
+                     <img src="{% static "images/forbes-logo.png" %}" class="sourcelogo" style="height: 20px; margin-left:5px; margin-top:5px">
                  </a>
         {%  endif %}
         <span class="author" style = "margin-right:20px; margin-bottom: 15px"> {{ title }} </span>
-       <details class="summary" style = "margin-right:20px; color: white;  border:none; background-color: #055662;">
+       <details class="summary" style = "margin-right:20px; color: white;  border:none; background-color: #04B9D3;">
            <summary> <u> Article Summary </u> </summary>{{ summary }} </details>
 
         </div>
