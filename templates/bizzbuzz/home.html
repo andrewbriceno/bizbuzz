@@ -88,11 +88,16 @@
                      <img src="{% static "images/tt-logo.png" %}" class="sourcelogo" style="height: 30px; margin-left:5px; margin-top:5px">
                  </a>
         {%  endif %}
-        {% if source == "MARKET_WATCH" %}
-                 <a href="{{ url }}" style="color:white;">
-                     <img src="{% static "images/mw-logo.png" %}" class="sourcelogo" style="height: 20px; margin-left:5px; margin-top:5px">
+        {% if source == "FORBES" %}
+                 <a href="{{ url }}" >
+                     <img src="{% static "images/forbes-logo.png" %}" class="sourcelogo" style="color:white;height: 20px; margin-left:5px; margin-top:5px">
                  </a>
         {%  endif %}
+<!--        {% if source == "MARKET_WATCH" %}-->
+<!--                 <a href="{{ url }}" style="color:white;">-->
+<!--                     <img src="{% static "images/mw-logo.png" %}" class="sourcelogo" style="height: 20px; margin-left:5px; margin-top:5px">-->
+<!--                 </a>-->
+<!--        {%  endif %}-->
         <span class="author" style = "margin-right:20px; margin-bottom: 15px"> {{ title }} </span>
        <details class="summary" style = "margin-right:20px; color: white;  border:none; background-color: #04B9D3;">
            <summary> <u> Article Summary </u> </summary>{{ summary }} </details>
@@ -123,6 +128,11 @@
                      <img src="{% static "images/bi-logo.png" %}" class="sourcelogo" style="height: 20px; margin-left:5px; margin-top:5px">
                  </a>
         {%  endif %}
+        {% if source == "FORBES" %}
+                 <a href="{{ url }}" >
+                     <img src="{% static "images/forbes-logo.png" %}" class="sourcelogo" style="color:white;height: 20px; margin-left:5px; margin-top:5px">
+                 </a>
+        {%  endif %}
         {% if source == "NYTIMES" %}
                  <a href="{{ url }}" style="color:white;">
                      <img src="{% static "images/nyt-logo.png" %}" class="sourcelogo" style="height: 40px; margin-left:5px; margin-top:5px">
@@ -133,11 +143,11 @@
                      <img src="{% static "images/tt-logo.png" %}" class="sourcelogo" style="height: 30px; margin-left:5px; margin-top:5px">
                  </a>
         {%  endif %}
-        {% if source == "MARKET_WATCH" %}
-                 <a href="{{ url }}" style="color:white;">
-                     <img src="{% static "images/mw-logo.png" %}" class="sourcelogo" style="height: 20px; margin-left:5px; margin-top:5px">
-                 </a>
-        {%  endif %}
+<!--        {% if source == "MARKET_WATCH" %}-->
+<!--                 <a href="{{ url }}" style="color:white;">-->
+<!--                     <img src="{% static "images/mw-logo.png" %}" class="sourcelogo" style="height: 20px; margin-left:5px; margin-top:5px">-->
+<!--                 </a>-->
+<!--        {%  endif %}-->
         <span class="author" style = "margin-right:20px; margin-bottom: 15px"> {{ title }} </span>
        <details class="summary" style = "margin-right:20px; color: white;  border:none; background-color: #055662;">
            <summary> <u> Article Summary </u> </summary>{{ summary }} </details>
