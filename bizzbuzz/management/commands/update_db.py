@@ -48,6 +48,7 @@ class Command(BaseCommand):
                         article.save()
 
         req = requests.get("https://www.forbes.com/enterprise-tech")
+        soup = BeautifulSoup(req.content, features='html.parser')
 
         for div in soup.find_all("div", class_="stream-item__text"):
             a_tag = div.a
