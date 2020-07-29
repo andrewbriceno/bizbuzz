@@ -114,8 +114,6 @@ def home_view(request):
                         sources.append('TECH_TIMES')
                     elif 'forbes.com' in getattr(n, 'url').lower():
                         sources.append('FORBES')
-                    # elif 'marketwatch.com' in getattr(n, 'url').lower():
-                    #     sources.append('MARKET_WATCH')
                     else:
                         sources.append('BI')
         #zip together titles, urls, summaries, sources, and send to home.html
