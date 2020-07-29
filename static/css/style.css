@@ -3,10 +3,11 @@ html,body{
 }
 
 body{
+    width:100%;
+    height: 100%;
     background-color: #0994A8;
     overflow: hidden;
 }
-
 
 .navbar{
     z-index: 1;
@@ -18,7 +19,7 @@ body{
     background: #04B9D3;
     position: fixed;
     top: 0px;
-    height: 40px;
+    height: 4%;
     opacity:1;
     margin-bottom: 80px;
 }
@@ -51,21 +52,17 @@ a:hover{
     display:flex;
     flex-direction: row;
     width: 100%;
-    margin-top: 20px;
     height: 100%;
 }
 .sidebar {
-    margin-top: 10px;
-    border-right: darkgray solid 1px;
+    width:22%;
+    margin-left: -1%;
     display: flex;
     flex-direction: column;
     background-color: white;
-    width: 2000px;
-    padding-top:20px;
-    margin-left: -7px;
-    padding-bottom: 250px;
-
-    height: 600px;
+    padding-bottom: 10%;
+    height: 95%;
+    overflow-y: scroll;
 }
 
 .favorite
@@ -110,18 +107,21 @@ background-color: #055662;
     flex-direction: column;
     border-top:darkgray solid 1px;
     background-color: white;
-    margin-right: -5px;
     overflow-x: hidden;
     height: 100%;
-    padding-bottom: 40px;
+    width: 77.5%;
+    margin-top: 1%;
+    padding-left: 0.5%;
+
 }
 .loginHeading
 {
     font-size: 28px;
     font-weight: bold;
     color: #055662;
-    margin-left: 530px;
-    padding-top: 60px;
+    padding-left: 48%;
+    padding-top: 5%;
+    margin-top: 5%;
 }
 .hintText
 {
@@ -175,13 +175,12 @@ margin-bottom: 0;
     display: flex;
     flex-direction: column;
     padding-bottom: 20px;
-    margin-left: 350px;
-    margin-top: 15px;
+    margin-left: 35%;
+    margin-top: 1%;
     border: darkgray solid 1px;
     border-radius: 5px;
     background-color: #04B9D3;
-    width: 450px;
-    margin-right:460px;
+    width: 30%;
     color: white;
 }
 .loginContainer form
@@ -221,7 +220,7 @@ margin-bottom: 0;
     display: flex;
     flex-direction: row;
     padding-bottom: 20px;
-    margin-left: 28px;
+    margin-left: 22px;
     border: darkgray solid 1px;
     border-radius: 5px;
     background-color: #04B9D3;
@@ -313,7 +312,7 @@ margin-right: 20px;
     font-weight: bold;
 }
 ::-webkit-scrollbar {
-    width: 12px;
+    width: 11px;
     height: 50px;
 }
 ::-webkit-scrollbar-track {
