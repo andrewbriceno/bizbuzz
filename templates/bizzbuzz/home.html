@@ -60,27 +60,18 @@
     {%  if dates == True %}
      <a target="_blank" rel="noopener noreferrer" href="{{ url }}">
         <div class="newsCard">
-<!--<button class="number" disabled >{{ index }}</button>-->
     <div class="textcontainer">
         {% if source == "BI" %}
-<!--                 <a href="{{ url }}" style="color:white;">-->
                      <img src="{% static "images/bi-logo.png" %}" class="sourcelogo" style="height: 20px; margin-left:5px; margin-top:5px">
-<!--                 </a>-->
         {%  endif %}
         {% if source == "NYTIMES" %}
-<!--                 <a href="{{ url }}" style="color:white;">-->
                      <img src="{% static "images/nyt-logo.png" %}" class="sourcelogo" style="height: 40px; margin-left:5px; margin-top:5px">
-<!--                 </a>-->
         {%  endif %}
         {% if source == "TECH_TIMES" %}
-<!--                 <a href="{{ url }}" style="color:white;">-->
                      <img src="{% static "images/tt-logo.png" %}" class="sourcelogo" style="height: 30px; margin-left:5px; margin-top:5px">
-<!--                 </a>-->
         {%  endif %}
         {% if source == "FORBES" %}
-<!--                 <a href="{{ url }}" >-->
                      <img src="{% static "images/forbes-logo.png" %}" class="sourcelogo" style="color:white;height: 20px; margin-left:5px; margin-top:5px">
-<!--                 </a>-->
         {%  endif %}
         <a href="{{ url }}" style="color:white;">
         <span class="author" style = "margin-right:20px; margin-bottom: 15px"> {{ title }} </span>
@@ -106,27 +97,18 @@
     {% if dates == False %}
      <a target="_blank" rel="noopener noreferrer" href="{{ url }}">
         <div class="newsCard">
-<!--<button class="number" disabled >{{ index }}</button>-->
     <div class="textcontainer">
         {% if source == "BI" %}
-<!--                 <a href="{{ url }}" style="color:white;">-->
                      <img src="{% static "images/bi-logo.png" %}" class="sourcelogo" style="height: 20px; margin-left:5px; margin-top:5px">
-<!--                 </a>-->
         {%  endif %}
         {% if source == "FORBES" %}
-<!--                 <a href="{{ url }}" >-->
                      <img src="{% static "images/forbes-logo.png" %}" class="sourcelogo" style="color:white;height: 20px; margin-left:5px; margin-top:5px">
-<!--                 </a>-->
         {%  endif %}
         {% if source == "NYTIMES" %}
-<!--                 <a href="{{ url }}" style="color:white;">-->
                      <img src="{% static "images/nyt-logo.png" %}" class="sourcelogo" style="height: 40px; margin-left:5px; margin-top:5px">
-<!--                 </a>-->
         {%  endif %}
         {% if source == "TECH_TIMES" %}
-<!--                 <a href="{{ url }}" style="color:white;">-->
                      <img src="{% static "images/tt-logo.png" %}" class="sourcelogo" style="height: 30px; margin-left:5px; margin-top:5px">
-<!--                 </a>-->
         {%  endif %}
         <a href="{{ url }}" style="color:white;">
         <span class="author" style = "margin-right:20px; margin-bottom: 15px;"> {{ title }} </span>
