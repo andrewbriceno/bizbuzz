@@ -57,7 +57,7 @@ def signup_view(request):
             return render(request, 'bizzbuzz/signup.html')
 
 def home_view(request):
-    if not request.user.is_authenticated:
+    if not request.user.is_authenticated or not Preferences.objects.get(username=request.user.username):
         return redirect('login')
     if request.method == 'POST' and 'run_script' in request.POST:
         # calls update_db.py in bizzbuzz/management/commands to update the database
