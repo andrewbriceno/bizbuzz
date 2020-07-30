@@ -1,5 +1,3 @@
-# from django.http import HttpResponse
-# from django.template import loader
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -33,7 +31,7 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('login')
+    return redirect('index')
 
 def signup_view(request):
     if request.method == 'GET':
@@ -112,8 +110,8 @@ def home_view(request):
                         sources.append('NYTIMES')
                     elif 'techtimes.com' in getattr(n, 'url').lower():
                         sources.append('TECH_TIMES')
-                    elif 'marketwatch.com' in getattr(n, 'url').lower():
-                        sources.append('MARKET_WATCH')
+                    elif 'forbes.com' in getattr(n, 'url').lower():
+                        sources.append('FORBES')
                     else:
                         sources.append('BI')
         #zip together titles, urls, summaries, sources, and send to home.html
@@ -129,7 +127,6 @@ def selectchannel_view(request):
     if request.method == 'GET':
         preferred = []
         not_preferred = []
-        #i = 0
         for i in companies: #gets the current values of each company, puts in appropriate list, and passes lists to HTML
             value = getattr(preference, i)
             if value is False:

@@ -11,6 +11,61 @@ class Command(BaseCommand):
         a_week_ago = datetime.now() - timedelta(days=7)
         News.objects.filter(expiration_date__contains=a_week_ago).delete()
 
+    def add_forbes_articles(self):
+        # add rows for articles that are not already in the database
+        req = requests.get('https://www.forbes.com/business')
+        soup = BeautifulSoup(req.content, features='html.parser')
+
+        # replaces punctuation with space so companies can be parsed from title
+        punctuations = '''!()-[]{};:\'\"\\”“’’‘‘,<>./?@#$%^&*_~'''
+        translator = str.maketrans(punctuations, ' ' * len(punctuations))
+
+        # master list of companies we track
+        company_master_list = ['AMAZON', 'SAMSUNG', 'IBM', 'TWITTER', 'NETFLIX',
+                               'ORACLE', 'SAP', 'SALESFORCE', 'TESLA', 'SPACEX',
+                               'MICROSOFT', 'APPLE', 'GOOGLE', 'FACEBOOK']
+
+        # finds each article
+        articles = soup.findAll('h2')
+        for article in articles:
+            if article.a is not None:
+                url = article.a['href']
+                hit = str(News.objects.filter(url=url))  # Check if URL is already in DB
+                if "<News: News object" in hit:  # Article is already in DB, so skip adding it
+                    continue
+                else:  # Add article to DB
+                    req = requests.get(url)
+                    soup = BeautifulSoup(req.content, features='html.parser')
+                    first_para = soup.find('div', class_="article-body-container")
+                    if first_para is None:
+                        continue
+                    sum = first_para.find('p').text
+                    title = soup.find('title').text
+                    new_title = title.translate(translator)
+                    company_check = set(company_master_list).intersection(new_title.upper().split(' '))
+                    if company_check:
+                        article = News(title=title, url=url, summary=sum, company=company_check)
+                        article.save()
+
+        req = requests.get("https://www.forbes.com/enterprise-tech")
+        soup = BeautifulSoup(req.content, features='html.parser')
+
+        for div in soup.find_all("div", class_="stream-item__text"):
+            a_tag = div.a
+            if a_tag is not None:
+                url = a_tag.attrs["href"]
+                hit = str(News.objects.filter(url=url))  # Check if URL is already in DB
+                if "<News: News object" in hit:  # Article is already in DB, so skip adding it
+                    continue
+                else:
+                    title = a_tag.text
+                    sum = div.find("div", class_="stream-item__description").text
+                    new_title = title.translate(translator)
+                    company_check = set(company_master_list).intersection(new_title.upper().split(' '))
+                    if company_check:
+                        article = News(title=title, url=url, summary=sum, company=company_check)
+                        article.save()
+
     def add_BI_articles(self):
         BIurls = ["https://www.businessinsider.com/sai", "https://www.businessinsider.com/clusterstock",
                   "https://www.businessinsider.com/warroom", "https://www.businessinsider.com/retail",
@@ -161,7 +216,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         self.purge_db()
+        self.add_forbes_articles()
         self.add_BI_articles()
         self.add_NYT_articles()
         self.add_TT_articles()
-        self.add_MW_articles()
+        # self.add_MW_articles()
