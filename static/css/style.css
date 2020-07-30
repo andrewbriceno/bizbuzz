@@ -55,7 +55,7 @@ a:hover{
     height: 100%;
 }
 .sidebar {
-    width:22%;
+    width:12%;
     margin-left: -1%;
     display: flex;
     flex-direction: column;
@@ -63,6 +63,7 @@ a:hover{
     padding-bottom: 10%;
     height: 95%;
     overflow-y: scroll;
+    padding-left: 3%;
 }
 
 .favorite
@@ -109,7 +110,7 @@ background-color: #055662;
     background-color: white;
     overflow-x: hidden;
     height: 100%;
-    width: 77.5%;
+    width: 85%;
     margin-top: 1%;
     padding-left: 0.5%;
 
@@ -167,7 +168,6 @@ margin-bottom: 0;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-
 }
 .loginContainer
 {
@@ -220,12 +220,13 @@ margin-bottom: 0;
     display: flex;
     flex-direction: row;
     padding-bottom: 20px;
-    margin-left: 22px;
+    margin-left: 3%;
     border: darkgray solid 1px;
     border-radius: 5px;
     background-color: #04B9D3;
     color: white;
     width:350px;
+    margin-right: 2%;
 }
 .number
 {
