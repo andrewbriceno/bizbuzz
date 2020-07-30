@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Manage Subscriptions</title>
     <link rel="stylesheet" href="{% static "css/style.css" %}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
@@ -16,7 +16,7 @@
     <span class="subHeading" style="margin-left: 800px; color: white; text-transform:capitalize; ">Welcome <b>{{ name }}</b>!</span>
 </div>
 <div class="container" >
-    <div class="feed" style="padding-left: 150px;padding-right: 68px;padding-top:100px">
+    <div class="feed" style="width: 100%;;margin-left: -1%;padding-top: 4%;">
 {#        <span class="loginHeading" style="margin-left: 370px; margin-bottom: 7px">Manage Company Subscriptions</span>#}
 {#        <span class="loginHeading" style="margin-left: 440px; margin-bottom: 5px; font-size: 16px;padding-top: 0px;">You Are Currently Subscribed To: </span>#}
 {#        {% for field in preferred %}#}
@@ -30,10 +30,6 @@
 <div class="loginContainer" style="margin-bottom: 160px;margin-top: 50px;">
     <form action="" method="POST">
         {% csrf_token %}
-
-        <div class="row">
-  <input type="search"  style="margin-left: 74px;margin-top: 22px; padding: 25px;" placeholder="Enter a channel..">
-            </div>
 
         <div class="row">
             <span class="subHeading" style="padding-left: 85px;padding-top: 15px;font-size: 20px;">Amazon</span>
